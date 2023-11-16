@@ -1,0 +1,25 @@
+.button {
+  margin: 60px 47px 0 41px;
+  padding: 12px 0 16px 0;
+  width: 278px;
+  flex-shrink: 0;
+  border-radius: 46px;
+  background: var(--palette-purple-90, #580EA2);
+  color: #FFF;
+  border: none;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: StratosSkyeng;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+
+  &:hover {
+    background: #3F007D;
+  }
+
+  &:active {
+    background: #271A58;
+  }
+}
