@@ -1,7 +1,4 @@
+// import { Button } from "./Button"
+import styles from "./WorkotVideoPage.module.css";
 
-import { Button } from "./Button"
-import styles from "./WorkotVideoPage.module.css"
-
-export const WorkoutVideoPage = () => {
-  
-}
+export const WorkoutVideoPage = () => {};
