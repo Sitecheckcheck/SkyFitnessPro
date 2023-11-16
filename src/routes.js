@@ -5,7 +5,7 @@ import { ChangePassword } from "./views/lesia/ChangePassword";
 import { ChangeLogin } from "./views/lesia/ChangeLogin";
 import { Progress } from "./views/lesia/Progress";
 import { ProtectedRoute } from "./views/lesia/ProtectedRoute";
-import { WorkoutVideoPage } from "./views/lesia/WorkoutVideoPage";
+import { WorkoutVideoPage } from "./views/tanya/WorkoutVideoPage";
 import { ProfilePage } from "./views/lesia/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
 
