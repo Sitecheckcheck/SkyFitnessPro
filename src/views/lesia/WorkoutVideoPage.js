@@ -1,6 +1,6 @@
 
 import { Button } from "./Button"
-import styles from "./WorkotVideoPage.module.css"
+import styles from "./WorkoutDescriptionPage.module.css"
 
 export const WorkoutVideoPage = () => {
   

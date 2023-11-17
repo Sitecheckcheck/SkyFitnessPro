@@ -5,9 +5,10 @@ import { ChangePassword } from "./views/lesia/ChangePassword";
 import { ChangeLogin } from "./views/lesia/ChangeLogin";
 import { Progress } from "./views/lesia/Progress";
 import { ProtectedRoute } from "./views/lesia/ProtectedRoute";
-import { WorkoutVideoPage } from "./views/tanya/WorkoutVideoPage";
+import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage";
 import { ProfilePage } from "./views/lesia/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
+import { WorkoutVideoPage } from "./views/lesia/WorkoutVideoPage"
 
 export const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
       <Route path="/changeLogin" element={<ChangeLogin />} />
       <Route path="/progress" element={<Progress />} />
       <Route path="/progresscheck" element={<ProgressCheck />} />
+      <Route path="/workout-video" element={<WorkoutDescriptionPage />} />
       <Route
         path="/workout-video"
         element={
