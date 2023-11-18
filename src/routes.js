@@ -9,6 +9,7 @@ import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage";
 import { ProfilePage } from "./views/lesia/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
 import { WorkoutVideoPage } from "./views/lesia/WorkoutVideoPage"
+import { SelectWorkout } from "./views/lesia/SelectWorkout";
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
       <Route path="/progress" element={<Progress />} />
       <Route path="/progresscheck" element={<ProgressCheck />} />
       <Route path="/workout-video" element={<WorkoutDescriptionPage />} />
+      <Route path="/select-workout" element={<SelectWorkout />} />
       <Route
         path="/workout-video"
         element={
