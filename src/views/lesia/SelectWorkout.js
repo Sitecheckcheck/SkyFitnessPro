@@ -3,10 +3,10 @@ import styles from "./SelectWorkout.module.css"
 export const SelectWorkout = () => {
 const workouts = [
   {id: 'morning', title: 'Утренняя практика',description: 'Йога на каждый день / 1 день', isDone: true},
-  {id: 'beauty', title: 'Утренняя практика',description: 'Йога на каждый день / 1 день', isDone: true},
-  {id: 'asans', title: 'Утренняя практика',description: 'Йога на каждый день / 1 день', isDone: false},
-  {id: 'stretching', title: 'Утренняя практика',description: 'Йога на каждый день / 1 день', isDone: false},
-  {id: 'mobility', title: 'Утренняя практика',description: 'Йога на каждый день / 1 день', isDone: false},
+  {id: 'beauty', title: 'Красота и здоровье',description: 'Йога на каждый день / 2 день', isDone: true},
+  {id: 'asans', title: 'Асаны стоя',description: 'Йога на каждый день / 3 день', isDone: false},
+  {id: 'stretching', title: 'Растягиваем мышцы бедра', description: 'Йога на каждый день / 4 день', isDone: false},
+  {id: 'mobility', title: 'Гибкость спины',description: 'Йога на каждый день / 5 день', isDone: false},
   {},
 ];
 
