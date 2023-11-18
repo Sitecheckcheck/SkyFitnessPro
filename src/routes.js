@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { MainPage } from "./views/pasha/mainPage";
+import { MainPage } from "./views/pasha/mainPage/mainPage";
 import { AuthPage } from "./views/lesia/AuthPage";
 import { ChangePassword } from "./views/lesia/ChangePassword";
 import { ChangeLogin } from "./views/lesia/ChangeLogin";
 import { Progress } from "./views/lesia/Progress";
 import { ProtectedRoute } from "./views/lesia/ProtectedRoute";
 import { WorkoutVideoPage } from "./views/tanya/WorkoutVideoPage";
-import { ProfilePage } from "./views/lesia/ProfilePage";
+import { ProfilePage } from "./views/pasha/ProfilePage/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
 
 export const AppRoutes = () => {

@@ -36,7 +36,7 @@ export const MainPage = () => {
   };
 
   return (
-    <section className={`${styles.main} container`}>
+    <section className={`${styles.main}`}>
       <div className={styles.header}>
         <NavLink to="/">
           <div>
