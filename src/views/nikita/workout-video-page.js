@@ -1,6 +1,6 @@
-import "./nikita.css";
+import "./workout-video-page.css";
 //
-export const Nikita = () => {
+export const WorkoutVideoPage = () => {
   return (
     <div>
       <div className="wrapper">
@@ -74,4 +74,4 @@ export const Nikita = () => {
       </div>
     </div>
   );
-}
+};

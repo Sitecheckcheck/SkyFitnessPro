@@ -5,17 +5,17 @@ import { ChangePassword } from "./views/lesia/ChangePassword";
 import { ChangeLogin } from "./views/lesia/ChangeLogin";
 import { Progress } from "./views/lesia/Progress";
 import { ProtectedRoute } from "./views/lesia/ProtectedRoute";
-import { Nikita } from "./views/nikita/nikita"
+import { WorkoutVideoPage } from "./views/nikita/workout-video-page";
 import { ProfilePage } from "./views/pasha/ProfilePage/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
-import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage"
+import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage";
 import { SelectWorkout } from "./views/lesia/SelectWorkout";
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/login" element={<AuthPage isLoginMode={true}/>} />
+      <Route path="/login" element={<AuthPage isLoginMode={true} />} />
       <Route path="/register" element={<AuthPage isLoginMode={false} />} />
       <Route path="/changePassword" element={<ChangePassword />} />
       <Route path="/changeLogin" element={<ChangeLogin />} />
@@ -27,7 +27,7 @@ export const AppRoutes = () => {
         path="/workout-video"
         element={
           <ProtectedRoute redirectPath="/workout-description" isAllowed={true}>
-            <Nikita />
+            <WorkoutVideoPage />
           </ProtectedRoute>
         }
       />
