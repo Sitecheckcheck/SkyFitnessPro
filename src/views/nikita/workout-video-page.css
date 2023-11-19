@@ -1,7 +1,7 @@
 @font-face {
   font-family: "StratosSkyeng";
   src: local("StratosSkyeng"),
-    url(./fonts/StratosLCWeb-Regular.woff) format("woff");
+    url(../../../public/fonts/StratosLCWeb-Regular.woff) format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -25,7 +25,7 @@
 .logo {
   width: 100%;
   height: auto;
-  background-image: url(./nikitaImg/logo.png);
+  background-image: url(../../../public/img/logo.png);
   background-repeat: no-repeat;
   padding-left: 0px;
 }
@@ -41,7 +41,7 @@
 .user-avatar {
   width: 100%;
   height: 100%;
-  background-image: url(./nikitaImg/avatar.png);
+  background-image: url(../../../public/img/avatar.png);
   background-repeat: no-repeat;
 }
 
@@ -87,7 +87,7 @@
   width: 1160px;
   height: 639px;
   flex-shrink: 0;
-  background-image: url(./nikitaImg/video.png);
+  background-image: url(../../../public/img/video.png);
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@
   opacity: 0.75;
   position: relative;
   align-self: center;
-  background-image: url(./nikitaImg/play.png);
+  background-image: url(../../../public/img/play.png);
   background-repeat: no-repeat;
 }
 
@@ -195,20 +195,20 @@
 .progress-one {
   width: 100%;
   height: 100%;
-  background-image: url(./nikitaImg/progressOne.png);
+  background-image: url(../../../public/img/progressOne.png);
   background-repeat: no-repeat;
 }
 
 .progress-two {
   width: 100%;
   height: 100%;
-  background-image: url(./nikitaImg/progressTwo.png);
+  background-image: url(../../../public/img/progressTwo.png);
   background-repeat: no-repeat;
 }
 
 .progress-three {
   width: 100%;
   height: 100%;
-  background-image: url(./nikitaImg/progressThree.png);
+  background-image: url(../../../public/img/progressThree.png);
   background-repeat: no-repeat;
 }
