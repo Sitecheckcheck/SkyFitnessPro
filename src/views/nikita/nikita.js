@@ -1,6 +1,6 @@
 import "./nikita.css";
 //
-export default function Nikita() {
+export const Nikita = () => {
   return (
     <div>
       <div className="wrapper">
