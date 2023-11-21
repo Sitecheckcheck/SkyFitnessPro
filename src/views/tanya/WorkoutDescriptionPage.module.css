@@ -1,144 +1,140 @@
 .App {
-    width: 100vw;
-    max-width: 100vw;
-    height: 100vh;
-  }
-  
-  :global(*) {
-    margin: 0;
-    padding: 0;
-    font-family: "Regular", Arial, Helvetica, sans-serif;
-  }
-  :global(.container) {
-    padding: 30px 140px 60px 140px;
-  }
-  
-  :global(.small-text) {
-    color: #000;
-    font-family: "Regular", Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 32px;
-  }
-  
-  @font-face {
-    font-family: "Regular";
-    src: local("Stratos-Regular"),
-      url("../../../public/fonts/Stratos-Regular.woff2") format("woff2"),
-      url("../../../public/fonts/Stratos-Regular.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+}
 
-  .banner {
-    width: 100%;
-    height: 310px;
-    border-radius: 30px;
-    margin-top: 40px;
-  }
-  
-  .heading {
-    color: #000;
-    font-family: "Regular", Arial, Helvetica, sans-serif;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 48px;
-    margin-top: 40px;
-    
-  }
-  
-  .reasons {
-    display: flex;
-    gap: 24px;
-    width: 1000px;
-    margin-top: 40px;
-  }
-  
-  .number {
-    min-width: 67px;
-    height: 67px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #c7e957;
-    color: #000;
-    font-family: "Regular", Arial, Helvetica, sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 40px;
-  }
+:global(*) {
+  margin: 0;
+  padding: 0;
+  font-family: "Regular", Arial, Helvetica, sans-serif;
+}
+:global(.container) {
+  padding: 30px 140px 60px 140px;
+}
 
-  .content-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 80px;
-    margin-top: 22px;
-    box-sizing: border-box;
-  }
+:global(.small-text) {
+  color: #000;
+  font-family: "Regular", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+}
 
-  .directions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 22px;
-    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-    /* grid-auto-flow: row dense; */
-    column-gap: 80px;
-    margin-top: 22px;
-    box-sizing: border-box;
-  }
+@font-face {
+  font-family: "Regular";
+  src: local("Stratos-Regular"),
+    url("../../../public/fonts/Stratos-Regular.woff2") format("woff2"),
+    url("../../../public/fonts/Stratos-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
+.banner {
+  width: 100%;
+  height: 310px;
+  border-radius: 30px;
+  margin-top: 40px;
+}
 
+.heading {
+  color: #000;
+  font-family: "Regular", Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+  margin-top: 40px;
+}
 
-  .direction {
-    width: 600px;
-  }
+.reasons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 1000px;
+  padding-top: 0px;
+}
 
-  .text {
-    width: 60vw;
-    margin-top: 40px;
-    text-align: justify;
-    font-family: StratosSkyeng;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
-    letter-spacing: 0em;
-    text-align: left;
+.number {
+  min-width: 67px;
+  height: 67px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c7e957;
+  color: #000;
+  font-family: "Regular", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
 
-  }
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  align-items: center;
+  column-gap: 80px;
+  margin-top: 22px;
+  box-sizing: border-box;
+  padding-left: 30px;
+}
 
-  .left {
+.directions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 22px;
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  /* grid-auto-flow: row dense; */
+  column-gap: 80px;
+  margin-top: 22px;
+  box-sizing: border-box;
+}
 
-        width: 60vw;
-        height: 310px;
-        border-radius: 30px;
-        /* background-color: rgba(205, 205, 205, 0.1); */
-        margin-top: 40px;
-      
-        background-color: #F9EBFF;
-        
-        background-image: url("../../../public/img/Group.svg");
-        /*background-size: cover;*/
-        background-position: right;
-        background-repeat: no-repeat;
-        backdrop-filter: blur(15px);
-      }
+.direction {
+  width: 600px;
+}
 
-      .lefttext {
-        padding-top: 40px;
-        width: 823px;
-        font-family: StratosSkyeng;
-        font-size: 32px;
-        font-weight: 400;
-        line-height: 40px;
-        letter-spacing: 0em;
-        text-align: left;
-      }
-      
+.text {
+  width: 1160px;
+  margin-top: 40px;
+  text-align: justify;
+  font-family: StratosSkyeng;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+}
 
-      
+.left {
+  width: 1160px;
+  height: 300px;
+  border-radius: 30px;
+  /* background-color: rgba(205, 205, 205, 0.1); */
+  margin-top: 40px;
+
+  background-color: #f9ebff;
+
+  background-image: url("../../../public/img/Group.svg");
+  /*background-size: cover;*/
+  background-position: right;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(15px);
+}
+
+.lefttext {
+  padding-top: 40px;
+  width: 823px;
+  font-family: StratosSkyeng;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0em;
+  /* text-align: left; */
+  padding-left: 40px;
+}

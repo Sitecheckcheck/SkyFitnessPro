@@ -2,35 +2,48 @@ import { Button } from "../lesia/Button";
 import styles from "./WorkoutDescriptionPage.module.css";
 
 export const WorkoutDescriptionPage = () => {
-
-
-
-
-
   return (
     <div className={`${styles.wrapper} container`}>
       <div className={styles.logoBox}>
-          <img src="img/logoblack.svg" alt="logo" />
-        </div>
+        <img src="img/logoblack.svg" alt="logo" />
+      </div>
+      <br />
+      <br />
+      <br />
       <div name={styles.banner}>
         <img src="img/skillcard.svg" alt="banner" />
-        </div> 
-      <div>
-        <div className={styles.heading}>Подойдет для вас, если:</div> 
-        <ol className={styles.reasons}>
-            <div className={styles.number}>1</div>
-            <li className={styles.reasons}>Давно хотели попробовать йогу, но не решались начать. </li>
-            <div className={styles.number}>2</div>
-            <li className={styles.reasons}>Хотите укрепить позвоночник, избавиться от болей в спине и суставах.</li>
-            <div className={styles.number}>3</div>
-            <li className={styles.reasons}>Ищете активность, полезную для тела и души.</li>
-          </ol>
       </div>
       <div>
-      <div className={styles.heading}>Направления:</div>
-      <div className={styles["content-container"]}>
-        <div className={`${styles.directions} small-text`}>
-        <ul>
+        <div className={styles.heading}>Подойдет для вас, если:</div>
+        <div style={{ paddingTop: "40px" }}>
+          <ol className={styles.reasons}>
+            <div className={styles.number}>1</div>
+            <li className={styles.reasons}>
+              Давно хотели
+              <br /> попробовать йогу, но
+              <br /> не решались начать.{" "}
+            </li>
+            <div className={styles.number}>2</div>
+            <li className={styles.reasons}>
+              Хотите укрепить
+              <br /> позвоночник,
+              <br /> избавиться от болей
+              <br /> в спине и суставах.
+            </li>
+            <div className={styles.number}>3</div>
+            <li className={styles.reasons}>
+              Ищете активность,
+              <br /> полезную для тела
+              <br /> и души.
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div>
+        <div className={styles.heading}>Направления:</div>
+        <div className={styles["content-container"]}>
+          <div className={`${styles.directions} small-text`}>
+            <ul>
               <li className={styles.direction}>Йога для новичков</li>
               <li className={styles.direction}>Классическая йога</li>
               <li className={styles.direction}>Йогатерапия</li>
@@ -42,7 +55,7 @@ export const WorkoutDescriptionPage = () => {
               <li>Хатха-йога</li>
               <li>Аштанга-йога</li>
             </ul>
-            </div>
+          </div>
         </div>
       </div>
       <p className={`${styles.text} small-text`}>
@@ -52,14 +65,13 @@ export const WorkoutDescriptionPage = () => {
         помогают противостоять стрессам.
       </p>
       <div className={styles.left}>
-        <p className={styles.lefttext}>
-          Оставьте заявку на пробное занятие, мы свяжемся с вами, поможем с
-          выбором направления и тренера, с которым тренировки принесут здоровье
-          и радость!
-        </p>
+        <div className={styles.lefttext}>
+          Оставьте заявку на пробное занятие, мы свяжемся
+          <br /> с вами, поможем с выбором направления и тренера,
+          <br /> с которым тренировки принесут здоровье и радость!
+        </div>
         <Button color={"purple"} text={"Записаться на тренировку"} />
       </div>
-      
     </div>
-  )
-}
+  );
+};
