@@ -18,7 +18,7 @@ export const Progress = () => {
         <div className={styles.inputBox}>
           <input className={styles.inputForm} type="text" name="quantity" placeholder="Введите значение"></input>
         </div>
-        <Button text="Отправить" />
+        <Button text="Отправить" onClick={console.log('send')}/>
       </div>
     </div>
   )

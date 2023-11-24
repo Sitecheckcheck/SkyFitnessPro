@@ -1,6 +1,6 @@
 import "./workout-video-page.css";
 //
-export const WorkoutVideoPage = () => {
+export const WorkoutVideoPage = ({login}) => {
   return (
     <div>
       <div className="wrapper">
@@ -8,7 +8,7 @@ export const WorkoutVideoPage = () => {
           <div className="logo" />
           <div className="user-wrapper">
             <div className="user-avatar" />
-            <div className="user-name">Сергей</div>
+            <div className="user-name">{login}</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"

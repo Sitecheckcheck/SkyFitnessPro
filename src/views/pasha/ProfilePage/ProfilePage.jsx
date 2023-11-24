@@ -1,7 +1,7 @@
 import styles from "./ProfilePage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export const ProfilePage = () => {
+export const ProfilePage = ({login}) => {
   const usersCourses = [
     { name: "Йога" },
     { name: "Стретчинг" },
@@ -39,15 +39,14 @@ export const ProfilePage = () => {
 
           <NavLink className={styles.user} to="/profile">
             <img src="img/Ellipse.svg" alt="" />
-            <p>Сергей</p>
+            <p>{login}</p>
           </NavLink>
         </div>
       </div>
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мой профиль</p>
         <div className={styles.content_user}>
-          <p className={styles.content_user_item}>Логин: sergey.petrov96</p>
-          <p className={styles.content_user_item}>Пароль: 4fkhdj880d</p>
+          <p className={styles.content_user_item}>Логин: {login}</p>
         </div>
         <div className={styles.content_buttons}>
           <button className={styles.button_edit}>Редактировать логин</button>
@@ -67,7 +66,8 @@ export const ProfilePage = () => {
               />
               <div
                 onClick={() => {
-                  navigate(`/course/${item._id}`);
+                  //navigate(`/course/${item._id}`);
+                  navigate('/workout-video');
                 }}
                 className={styles.button}
               >
