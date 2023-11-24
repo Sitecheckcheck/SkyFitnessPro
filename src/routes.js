@@ -10,8 +10,22 @@ import { ProfilePage } from "./views/pasha/ProfilePage/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
 import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage";
 import { SelectWorkout } from "./views/lesia/SelectWorkout";
+import { useDispatch } from "react-redux";
+import { setUser } from "./store/slices/userSlice";
 
 export const AppRoutes = () => {
+  const isAllowed = Boolean(localStorage.getItem('email'))
+
+  const dispatch = useDispatch();
+
+  dispatch(
+    setUser({
+      email: localStorage.getItem('email'),
+      id: localStorage.getItem('id'),
+    })
+  )
+
+
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
@@ -26,7 +40,7 @@ export const AppRoutes = () => {
       <Route
         path="/workout-video"
         element={
-          <ProtectedRoute redirectPath="/workout-description" isAllowed={true}>
+          <ProtectedRoute redirectPath="/workout-description" isAllowed={isAllowed}>
             <WorkoutVideoPage />
           </ProtectedRoute>
         }
@@ -34,7 +48,7 @@ export const AppRoutes = () => {
       <Route
         path="/profile"
         element={
-          <ProtectedRoute redirectPath="/" isAllowed={true}>
+          <ProtectedRoute redirectPath="/" isAllowed={isAllowed}>
             <ProfilePage />
           </ProtectedRoute>
         }

@@ -1,13 +1,13 @@
 /* @font-face {
-  font-family: "Regular";
-  src: url("../../../public/fonts/Stratos-Regular.woff2") format("woff2"),
-    url("../../../public/fonts/Stratos-Regular.woff") format("woff");
+  font-family: "StratosSkyeng";
+  src: url("../../../../public/fonts/Stratos-Regular.woff2") format("woff2"),
+    url("../../../../public/fonts/Stratos-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
-
  */
+
 
 .main {
   background: #271a58;
@@ -85,6 +85,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 37px;
+  margin-top: 52px ;
 }
 .img {
   border-radius: 30px;

@@ -2,6 +2,7 @@ import styles from "./mainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export const MainPage = () => {
+
   const handleTop = () => {
     window.scrollTo({
       top: 0,
