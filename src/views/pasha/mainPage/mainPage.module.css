@@ -39,6 +39,7 @@
 .img_title {
   position: absolute;
   left: 30px;
+  top: 30px;
   color: #000;
   font-size: 36px;
   font-style: normal;
