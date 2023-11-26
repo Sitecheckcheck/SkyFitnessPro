@@ -1,7 +1,15 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./ProfilePage.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { ChangeLogin } from "../../lesia/ChangeLogin";
+import { ChangePassword } from "../../lesia/ChangePassword";
+import {SelectWorkout} from "../../lesia/SelectWorkout"
+import { Modal } from "../../lesia/Modal";
 
 export const ProfilePage = ({login}) => {
+  const [changeData, setChangeData] = useState('');
+
   const usersCourses = [
     { name: "Йога" },
     { name: "Стретчинг" },
@@ -25,7 +33,20 @@ export const ProfilePage = ({login}) => {
     }
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  const getModalForm = () => {
+    switch (changeData) {
+    case 'login':
+      return <ChangeLogin onFormClose={() => setChangeData('')}/>
+    case 'password':
+      return <ChangePassword onFormClose={() => setChangeData('')}/>
+    case 'workouts':
+      return <SelectWorkout onFormClose={() => setChangeData('')}/>
+    default:
+      return null
+    }
+  } 
 
   return (
     <div className={styles.main}>
@@ -49,8 +70,8 @@ export const ProfilePage = ({login}) => {
           <p className={styles.content_user_item}>Логин: {login}</p>
         </div>
         <div className={styles.content_buttons}>
-          <button className={styles.button_edit}>Редактировать логин</button>
-          <button className={styles.button_edit}>Редактировать пароль</button>
+          <button className={styles.button_edit} onClick={() => setChangeData('login')}>Редактировать логин</button>
+          <button className={styles.button_edit} onClick={() => setChangeData('password')}>Редактировать пароль</button>
         </div>
       </div>
       <div className={styles.content_profile}>
@@ -65,20 +86,27 @@ export const ProfilePage = ({login}) => {
                 alt="fitness_img"
               />
               <div
-                onClick={() => {
-                  //navigate(`/course/${item._id}`);
-                  navigate('/workout-video');
-                }}
+                // onClick={() => {
+                //   //navigate(`/course/${item._id}`);
+                // }}
                 className={styles.button}
               >
                 <div className={styles.box}>
-                  <button className={styles.button_courses}>Перейти →</button>
+                  <button
+                    className={styles.button_courses}
+                    onClick={() => setChangeData('workouts')}
+                    >
+                    Перейти →
+                    </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      {createPortal(
+        <Modal isOpen={changeData}>{getModalForm()}</Modal>, document.body
+      )}
     </div>
   );
 };
