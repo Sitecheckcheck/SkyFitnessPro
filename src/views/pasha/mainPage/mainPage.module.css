@@ -39,6 +39,7 @@
 .img_title {
   position: absolute;
   left: 30px;
+  top: 30px;
   color: #000;
   font-size: 36px;
   font-style: normal;
@@ -51,6 +52,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 52px
 }
 .content_header {
   display: flex;
@@ -70,7 +72,7 @@
 }
 .subtitle {
   color: #f4f4ff;
-  width: 70%;
+  width: 90%;
   font-size: 60px;
   font-style: normal;
   font-weight: 400;
