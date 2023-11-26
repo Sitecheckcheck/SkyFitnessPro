@@ -1,7 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { removeUser } from "../../store/slices/userSlice";
 import "./workout-video-page.css";
 //
 export const WorkoutVideoPage = ({login}) => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const [visibleFilter, setVisibleFilter] = useState(null);
   const toggleVisibleFilter = (filter) => {
     setVisibleFilter(visibleFilter === filter ? null : filter);
@@ -35,7 +42,15 @@ export const WorkoutVideoPage = ({login}) => {
                 <div className="popup-box" $popup>
                   <li className="popup-line">На главную</li>
                   <li className="popup-line">Профиль</li>
-                  <li className="popup-line">Выйти</li>
+                  <li 
+                    className="popup-line"
+                    onClick={() => {
+                      dispatch(removeUser)
+                      navigate('/')
+                    }}
+                  >
+                    Выйти
+                  </li>
                 </div>
               </ul>
             )}
