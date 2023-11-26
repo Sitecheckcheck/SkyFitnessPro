@@ -1,12 +1,20 @@
+import { useState } from "react";
 import "./workout-video-page.css";
 //
 export const WorkoutVideoPage = () => {
+  const [visibleFilter, setVisibleFilter] = useState(null);
+  const toggleVisibleFilter = (filter) => {
+    setVisibleFilter(visibleFilter === filter ? null : filter);
+  };
   return (
     <div>
       <div className="wrapper">
         <div className="logo-wrapper">
           <div className="logo" />
-          <div className="user-wrapper">
+          <div
+            className="user-wrapper"
+            onClick={() => toggleVisibleFilter("popup")}
+          >
             <div className="user-avatar" />
             <div className="user-name">Сергей</div>
             <svg
@@ -22,6 +30,15 @@ export const WorkoutVideoPage = () => {
                 strokeWidth="2"
               />
             </svg>
+            {visibleFilter === "popup" && (
+              <ul className="popup" $popup>
+                <div className="popup-box" $popup>
+                  <li className="popup-line">На главную</li>
+                  <li className="popup-line">Профиль</li>
+                  <li className="popup-line">Выйти</li>
+                </div>
+              </ul>
+            )}
           </div>
         </div>
         <div className="content-wrapper">
