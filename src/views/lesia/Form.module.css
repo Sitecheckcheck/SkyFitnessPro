@@ -38,6 +38,18 @@
   letter-spacing: -0.05px;
 }
 
+.inputError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  left: 0px;
+  top: 42px;
+  color: rgb(255, 128, 113);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
 .buttonSignup {
   margin: 20px 47px 47px 41px;
   padding: 12px 0 16px;
