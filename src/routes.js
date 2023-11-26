@@ -10,8 +10,11 @@ import { ProfilePage } from "./views/pasha/ProfilePage/ProfilePage";
 import { ProgressCheck } from "./views/lesia/ProgressCheck";
 import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage";
 import { SelectWorkout } from "./views/lesia/SelectWorkout";
+import { useAuth } from './hooks/use-auth';
 
 export const AppRoutes = () => {
+  const {isAuth, email} = useAuth();
+  console.log(isAuth, email);
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
@@ -26,16 +29,16 @@ export const AppRoutes = () => {
       <Route
         path="/workout-video"
         element={
-          <ProtectedRoute redirectPath="/workout-description" isAllowed={true}>
-            <WorkoutVideoPage />
+          <ProtectedRoute redirectPath="/workout-description" isAllowed={isAuth} >
+            <WorkoutVideoPage login={email}/>
           </ProtectedRoute>
         }
       />
       <Route
         path="/profile"
         element={
-          <ProtectedRoute redirectPath="/" isAllowed={true}>
-            <ProfilePage />
+          <ProtectedRoute redirectPath="/" isAllowed={isAuth}>
+            <ProfilePage login={email}/>
           </ProtectedRoute>
         }
       />

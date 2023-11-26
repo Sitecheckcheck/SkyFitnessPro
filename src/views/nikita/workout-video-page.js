@@ -1,11 +1,36 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
+import { removeUser } from "../../store/slices/userSlice";
+import { Progress } from "../lesia/Progress";
+import { ProgressCheck } from "../lesia/ProgressCheck"
+import { Modal } from "../lesia/Modal";
 import "./workout-video-page.css";
 //
-export const WorkoutVideoPage = () => {
+export const WorkoutVideoPage = ({login}) => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const [progress, setProgress] = useState('');
+
   const [visibleFilter, setVisibleFilter] = useState(null);
   const toggleVisibleFilter = (filter) => {
     setVisibleFilter(visibleFilter === filter ? null : filter);
   };
+
+  const getModalForm = () => {
+    switch (progress) {
+    case 'progress':
+      return <Progress onFormClose={() => setProgress('')} onFormSubmited={() => setProgress('progresscheck')}/>
+    case 'progresscheck':
+      return <ProgressCheck onFormClose={() => setProgress('')}/>
+    default:
+      return null
+    }
+  }
+ 
   return (
     <div>
       <div className="wrapper">
@@ -16,7 +41,7 @@ export const WorkoutVideoPage = () => {
             onClick={() => toggleVisibleFilter("popup")}
           >
             <div className="user-avatar" />
-            <div className="user-name">Сергей</div>
+            <div className="user-name">{login}</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -35,7 +60,15 @@ export const WorkoutVideoPage = () => {
                 <div className="popup-box" $popup>
                   <li className="popup-line">На главную</li>
                   <li className="popup-line">Профиль</li>
-                  <li className="popup-line">Выйти</li>
+                  <li 
+                    className="popup-line"
+                    onClick={() => {
+                      dispatch(removeUser)
+                      navigate('/')
+                    }}
+                  >
+                    Выйти
+                  </li>
                 </div>
               </ul>
             )}
@@ -61,7 +94,11 @@ export const WorkoutVideoPage = () => {
                   Поднятие ног, согнутых в коленях (5 повторений)
                 </li>
               </ul>
-              <button className="button">Заполнить свой прогресс</button>
+              <button 
+                className="button"
+                onClick={() => setProgress('progress')}
+              >Заполнить свой прогресс
+              </button>
             </div>
             <div className="progress-wrapper">
               <div className="progress-header">
@@ -89,6 +126,9 @@ export const WorkoutVideoPage = () => {
           </div>
         </div>
       </div>
+      {createPortal(
+        <Modal isOpen={progress}>{getModalForm()}</Modal>, document.body
+      )}
     </div>
   );
 };
