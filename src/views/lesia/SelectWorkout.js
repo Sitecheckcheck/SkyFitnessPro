@@ -1,21 +1,47 @@
-import styles from "./SelectWorkout.module.css"
+import styles from "./SelectWorkout.module.css";
+import { useNavigate } from "react-router-dom";
 
-export const SelectWorkout = ({onFormClose}) => {
-const workouts = [
-  {id: 'morning', title: 'Утренняя практика',description: 'Йога на каждый день / 1 день', isDone: true},
-  {id: 'beauty', title: 'Красота и здоровье',description: 'Йога на каждый день / 2 день', isDone: true},
-  {id: 'asans', title: 'Асаны стоя',description: 'Йога на каждый день / 3 день', isDone: false},
-  {id: 'stretching', title: 'Растягиваем мышцы бедра', description: 'Йога на каждый день / 4 день', isDone: false},
-  {id: 'mobility', title: 'Гибкость спины',description: 'Йога на каждый день / 5 день', isDone: false},
-  {},
-];
+export const SelectWorkout = ({ onFormClose }) => {
+  const workouts = [
+    {
+      id: "morning",
+      title: "Утренняя практика",
+      description: "Йога на каждый день / 1 день",
+      isDone: true,
+    },
+    {
+      id: "beauty",
+      title: "Красота и здоровье",
+      description: "Йога на каждый день / 2 день",
+      isDone: true,
+    },
+    {
+      id: "asans",
+      title: "Асаны стоя",
+      description: "Йога на каждый день / 3 день",
+      isDone: false,
+    },
+    {
+      id: "stretching",
+      title: "Растягиваем мышцы бедра",
+      description: "Йога на каждый день / 4 день",
+      isDone: false,
+    },
+    {
+      id: "mobility",
+      title: "Гибкость спины",
+      description: "Йога на каждый день / 5 день",
+      isDone: false,
+    },
+    {},
+  ];
 
+  const navigate = useNavigate();
 
-
-return (
-  <div className={styles.page}>
-    <div className={styles.workoutForm}>
-    <svg
+  return (
+    <div className={styles.page}>
+      <div className={styles.workoutForm}>
+        <svg
           className={styles.closeButton}
           onClick={onFormClose}
           width="20px"
@@ -59,23 +85,46 @@ return (
             </g>
           </g>
         </svg>
-      <h1 className={styles.heading}>Выберите тренировку</h1>
-      <div className={styles.workouts}>
-        {
-          workouts.map((workout) => {
+        <h1 className={styles.heading}>Выберите тренировку</h1>
+        <div className={styles.workouts}>
+          {workouts.map((workout) => {
             return (
-              <div className={workout.isDone ? (styles.workoutActive) : (styles.workout)}>
+              <div
+                className={
+                  workout.isDone ? styles.workoutActive : styles.workout
+                }
+                onClick={() => navigate("/workout-video")}
+              >
                 <div className={styles.workoutBox}>
-                  <h2 className={workout.isDone ? (styles.workoutNameActive) : (styles.workoutName)}>{workout.title}</h2>
-                  {workout.isDone && <img className={styles.workoutSelected} src="img/check.svg" alt="check" />}
+                  <h2
+                    className={
+                      workout.isDone
+                        ? styles.workoutNameActive
+                        : styles.workoutName
+                    }
+                  >
+                    {workout.title}
+                  </h2>
+                  {workout.isDone && (
+                    <img
+                      className={styles.workoutSelected}
+                      src="img/check.svg"
+                      alt="check"
+                    />
+                  )}
                 </div>
-                <div className={workout.isDone ? (styles.courseNameActive) : (styles.courseName)}>{workout.description}</div>
+                <div
+                  className={
+                    workout.isDone ? styles.courseNameActive : styles.courseName
+                  }
+                >
+                  {workout.description}
+                </div>
               </div>
-            )
-          })
-        }
+            );
+          })}
+        </div>
       </div>
     </div>
-  </div>
-)
-}
+  );
+};
