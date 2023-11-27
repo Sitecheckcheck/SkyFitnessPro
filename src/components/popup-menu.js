@@ -34,8 +34,12 @@ export const Popupmenu = ({ login }) => {
       {visibleFilter && (
         <ul className="popup">
           <div className="popup-box">
-            <li className="popup-line">На главную</li>
-            <li className="popup-line">Профиль</li>
+            <li className="popup-line" onClick={() => navigate("/")}>
+              На главную
+            </li>
+            <li className="popup-line" onClick={() => navigate("/profile")}>
+              Профиль
+            </li>
             <li
               className="popup-line"
               onClick={() => {
