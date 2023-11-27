@@ -43,14 +43,9 @@ export const MainPage = () => {
             <img src="img/logo.svg" alt="logo" />
           </div>
         </NavLink>
-
-        {/* {isAllowed ? (
-        <UserItem userName={getUserName(email)} color={color} />
-      ) : ( */}
         <NavLink className="link" to="/login">
           <button className={styles.buttonLogin}>Войти</button>
         </NavLink>
-      {/* )} */}
       </div>
       <div className={styles.content}>
         <div className={styles.content_header}>

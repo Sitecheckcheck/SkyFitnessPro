@@ -4,16 +4,16 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../../store/slices/userSlice";
 import { Progress } from "../lesia/Progress";
-import { ProgressCheck } from "../lesia/ProgressCheck"
+import { ProgressCheck } from "../lesia/ProgressCheck";
 import { Modal } from "../lesia/Modal";
 import "./workout-video-page.css";
 //
-export const WorkoutVideoPage = ({login}) => {
+export const WorkoutVideoPage = ({ login }) => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const [progress, setProgress] = useState('');
+  const [progress, setProgress] = useState("");
 
   const [visibleFilter, setVisibleFilter] = useState(null);
   const toggleVisibleFilter = (filter) => {
@@ -22,15 +22,20 @@ export const WorkoutVideoPage = ({login}) => {
 
   const getModalForm = () => {
     switch (progress) {
-    case 'progress':
-      return <Progress onFormClose={() => setProgress('')} onFormSubmited={() => setProgress('progresscheck')}/>
-    case 'progresscheck':
-      return <ProgressCheck onFormClose={() => setProgress('')}/>
-    default:
-      return null
+      case "progress":
+        return (
+          <Progress
+            onFormClose={() => setProgress("")}
+            onFormSubmited={() => setProgress("progresscheck")}
+          />
+        );
+      case "progresscheck":
+        return <ProgressCheck onFormClose={() => setProgress("")} />;
+      default:
+        return null;
     }
-  }
- 
+  };
+
   return (
     <div>
       <div className="wrapper">
@@ -60,11 +65,14 @@ export const WorkoutVideoPage = ({login}) => {
                 <div className="popup-box" $popup>
                   <li className="popup-line">На главную</li>
                   <li className="popup-line">Профиль</li>
-                  <li 
+                  <li
                     className="popup-line"
                     onClick={() => {
-                      dispatch(removeUser)
-                      navigate('/')
+                      dispatch(removeUser());
+                      localStorage.removeItem("email");
+                      localStorage.removeItem("id");
+                      localStorage.removeItem("token");
+                      navigate("/");
                     }}
                   >
                     Выйти
@@ -94,10 +102,11 @@ export const WorkoutVideoPage = ({login}) => {
                   Поднятие ног, согнутых в коленях (5 повторений)
                 </li>
               </ul>
-              <button 
+              <button
                 className="button"
-                onClick={() => setProgress('progress')}
-              >Заполнить свой прогресс
+                onClick={() => setProgress("progress")}
+              >
+                Заполнить свой прогресс
               </button>
             </div>
             <div className="progress-wrapper">
@@ -127,7 +136,8 @@ export const WorkoutVideoPage = ({login}) => {
         </div>
       </div>
       {createPortal(
-        <Modal isOpen={progress}>{getModalForm()}</Modal>, document.body
+        <Modal isOpen={progress}>{getModalForm()}</Modal>,
+        document.body
       )}
     </div>
   );
