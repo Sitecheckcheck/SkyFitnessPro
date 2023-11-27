@@ -1,7 +1,17 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { Modal } from "../lesia/Modal";
 import { Button } from "../lesia/Button";
+import { Appointment } from "../lesia/Appointment";
 import styles from "./WorkoutDescriptionPage.module.css";
 
 export const WorkoutDescriptionPage = () => {
+  const [isOpen, setIsOpen] = useState('');
+
+  const getModalForm = () => {
+    return (isOpen === 'open') && (<Appointment onFormClose={() => setIsOpen('')}/>)
+  }
+
   return (
     <div className={`${styles.wrapper} container`}>
       <div className={styles.logoBox}>
@@ -70,8 +80,14 @@ export const WorkoutDescriptionPage = () => {
           <br /> с вами, поможем с выбором направления и тренера,
           <br /> с которым тренировки принесут здоровье и радость!
         </div>
-        <Button color={"purple"} text={"Записаться на тренировку"} />
+        <Button
+          color={"purple"}
+          text={"Записаться на тренировку"}
+          onClick={() => setIsOpen('open')}/>
       </div>
+      {createPortal(
+        <Modal isOpen={isOpen}>{getModalForm()}</Modal>, document.body
+      )}
     </div>
   );
 };
