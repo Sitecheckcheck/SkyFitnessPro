@@ -18,8 +18,16 @@ export const WorkoutDescriptionPage = () => {
 
   return (
     <div className={`${styles.wrapper} container`}>
-      <div className={styles.logoBox} onClick={() => navigate("/")}>
-        <img src="img/logoblack.svg" alt="logo" />
+      <div className={styles.headerWrapper}>
+        <div className={styles.logoBox} onClick={() => navigate("/")}>
+          <img src="img/logoblack.svg" alt="logo" />
+        </div>
+        <button
+          className={styles.buttonLogin}
+          onClick={() => navigate("/login")}
+        >
+          Войти
+        </button>
       </div>
       <br />
       <br />
