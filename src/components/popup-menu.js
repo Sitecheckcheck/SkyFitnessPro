@@ -14,10 +14,17 @@ export const Popupmenu = ({ login }) => {
     setVisibleFilter(visibleFilter === filter ? null : filter);
   };
 
+  let loginShortened = login.slice(0, 7) + "...";
+
   return (
     <div className="user-wrapper" onClick={() => toggleVisibleFilter("popup")}>
       <div className="user-avatar" />
-      <div className="user-name">{login}</div>
+      {login.length >= 7 ? (
+        <div className="user-name">{loginShortened}</div>
+      ) : (
+        <div className="user-name">{login}</div>
+      )}
+      {/* <div className="user-name">{login}</div> */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14"
