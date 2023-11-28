@@ -1,5 +1,7 @@
 import styles from "./mainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hooks/use-auth";
+import { Popupmenu } from "../../../components/popup-menu";
 
 export const MainPage = () => {
   const handleTop = () => {
@@ -34,6 +36,7 @@ export const MainPage = () => {
         return "/img/stap.png";
     }
   };
+  const { isAuth, email } = useAuth();
 
   return (
     <section className={`${styles.main}`}>
@@ -43,9 +46,13 @@ export const MainPage = () => {
             <img src="img/logo.svg" alt="logo" />
           </div>
         </NavLink>
-        <NavLink className="link" to="/login">
-          <button className={styles.buttonLogin}>Войти</button>
-        </NavLink>
+        {isAuth ? (
+          <Popupmenu login={email} />
+        ) : (
+          <NavLink className="link" to="/login">
+            <button className={styles.buttonLogin}>Войти</button>
+          </NavLink>
+        )}
       </div>
       <div className={styles.content}>
         <div className={styles.content_header}>

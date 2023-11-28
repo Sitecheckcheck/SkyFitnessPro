@@ -4,17 +4,21 @@ import { Modal } from "../lesia/Modal";
 import { Button } from "../lesia/Button";
 import { Appointment } from "../lesia/Appointment";
 import styles from "./WorkoutDescriptionPage.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const WorkoutDescriptionPage = () => {
-  const [isOpen, setIsOpen] = useState('');
+  const [isOpen, setIsOpen] = useState("");
 
   const getModalForm = () => {
-    return (isOpen === 'open') && (<Appointment onFormClose={() => setIsOpen('')}/>)
-  }
+    return (
+      isOpen === "open" && <Appointment onFormClose={() => setIsOpen("")} />
+    );
+  };
+  const navigate = useNavigate();
 
   return (
     <div className={`${styles.wrapper} container`}>
-      <div className={styles.logoBox}>
+      <div className={styles.logoBox} onClick={() => navigate("/")}>
         <img src="img/logoblack.svg" alt="logo" />
       </div>
       <br />
@@ -83,10 +87,12 @@ export const WorkoutDescriptionPage = () => {
         <Button
           color={"purple"}
           text={"Записаться на тренировку"}
-          onClick={() => setIsOpen('open')}/>
+          onClick={() => setIsOpen("open")}
+        />
       </div>
       {createPortal(
-        <Modal isOpen={isOpen}>{getModalForm()}</Modal>, document.body
+        <Modal isOpen={isOpen}>{getModalForm()}</Modal>,
+        document.body
       )}
     </div>
   );
