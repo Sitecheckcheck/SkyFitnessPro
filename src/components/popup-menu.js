@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { removeUser } from "../store/slices/userSlice";
 import "./popup-menu.css";
 
-export const Popupmenu = ({ login }) => {
+export const Popupmenu = ({
+  login,
+  userNameColor,
+  menuColor,
+  popupLineTextColor,
+}) => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -20,11 +25,14 @@ export const Popupmenu = ({ login }) => {
     <div className="user-wrapper" onClick={() => toggleVisibleFilter("popup")}>
       <div className="user-avatar" />
       {login.length >= 7 ? (
-        <div className="user-name">{loginShortened}</div>
+        <div className="user-name" style={{ color: userNameColor }}>
+          {loginShortened}
+        </div>
       ) : (
-        <div className="user-name">{login}</div>
+        <div className="user-name" style={{ color: userNameColor }}>
+          {login}
+        </div>
       )}
-      {/* <div className="user-name">{login}</div> */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14"
@@ -39,16 +47,25 @@ export const Popupmenu = ({ login }) => {
         />
       </svg>
       {visibleFilter && (
-        <ul className="popup">
+        <ul className="popup" style={{ background: menuColor }}>
           <div className="popup-box">
-            <li className="popup-line" onClick={() => navigate("/")}>
+            <li
+              className="popup-line"
+              style={{ color: popupLineTextColor }}
+              onClick={() => navigate("/")}
+            >
               На главную
             </li>
-            <li className="popup-line" onClick={() => navigate("/profile")}>
+            <li
+              className="popup-line"
+              style={{ color: popupLineTextColor }}
+              onClick={() => navigate("/profile")}
+            >
               Профиль
             </li>
             <li
               className="popup-line"
+              style={{ color: popupLineTextColor }}
               onClick={() => {
                 dispatch(removeUser());
                 localStorage.removeItem("email");

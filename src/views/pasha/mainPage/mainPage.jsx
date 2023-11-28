@@ -47,7 +47,12 @@ export const MainPage = () => {
           </div>
         </NavLink>
         {isAuth ? (
-          <Popupmenu login={email} />
+          <Popupmenu
+            login={email}
+            userNameColor={"white"}
+            menuColor={"#271a58"}
+            popupLineTextColor={"white"}
+          />
         ) : (
           <NavLink className="link" to="/login">
             <button className={styles.buttonLogin}>Войти</button>
