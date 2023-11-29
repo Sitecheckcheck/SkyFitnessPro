@@ -4,11 +4,12 @@ import styles from "./ProfilePage.module.css";
 import { NavLink } from "react-router-dom";
 import { ChangeLogin } from "../../lesia/ChangeLogin";
 import { ChangePassword } from "../../lesia/ChangePassword";
-import {SelectWorkout} from "../../lesia/SelectWorkout"
+import { SelectWorkout } from "../../lesia/SelectWorkout";
 import { Modal } from "../../lesia/Modal";
+import { Popupmenu } from "../../../components/popup-menu";
 
-export const ProfilePage = ({login}) => {
-  const [changeData, setChangeData] = useState('');
+export const ProfilePage = ({ login }) => {
+  const [changeData, setChangeData] = useState("");
 
   const usersCourses = [
     { name: "Йога" },
@@ -37,16 +38,16 @@ export const ProfilePage = ({login}) => {
 
   const getModalForm = () => {
     switch (changeData) {
-    case 'login':
-      return <ChangeLogin onFormClose={() => setChangeData('')}/>
-    case 'password':
-      return <ChangePassword onFormClose={() => setChangeData('')}/>
-    case 'workouts':
-      return <SelectWorkout onFormClose={() => setChangeData('')}/>
-    default:
-      return null
+      case "login":
+        return <ChangeLogin onFormClose={() => setChangeData("")} />;
+      case "password":
+        return <ChangePassword onFormClose={() => setChangeData("")} />;
+      case "workouts":
+        return <SelectWorkout onFormClose={() => setChangeData("")} />;
+      default:
+        return null;
     }
-  } 
+  };
 
   return (
     <div className={styles.main}>
@@ -57,11 +58,7 @@ export const ProfilePage = ({login}) => {
           </div>
         </NavLink>
         <div>
-
-          <NavLink className={styles.user} to="/profile">
-            <img src="img/Ellipse.svg" alt="" />
-            <p>{login}</p>
-          </NavLink>
+          <Popupmenu login={login} />
         </div>
       </div>
       <div className={styles.content_profile}>
@@ -70,8 +67,18 @@ export const ProfilePage = ({login}) => {
           <p className={styles.content_user_item}>Логин: {login}</p>
         </div>
         <div className={styles.content_buttons}>
-          <button className={styles.button_edit} onClick={() => setChangeData('login')}>Редактировать логин</button>
-          <button className={styles.button_edit} onClick={() => setChangeData('password')}>Редактировать пароль</button>
+          <button
+            className={styles.button_edit}
+            onClick={() => setChangeData("login")}
+          >
+            Редактировать логин
+          </button>
+          <button
+            className={styles.button_edit}
+            onClick={() => setChangeData("password")}
+          >
+            Редактировать пароль
+          </button>
         </div>
       </div>
       <div className={styles.content_profile}>
@@ -94,10 +101,10 @@ export const ProfilePage = ({login}) => {
                 <div className={styles.box}>
                   <button
                     className={styles.button_courses}
-                    onClick={() => setChangeData('workouts')}
-                    >
+                    onClick={() => setChangeData("workouts")}
+                  >
                     Перейти →
-                    </button>
+                  </button>
                 </div>
               </div>
             </div>
@@ -105,7 +112,8 @@ export const ProfilePage = ({login}) => {
         </div>
       </div>
       {createPortal(
-        <Modal isOpen={changeData}>{getModalForm()}</Modal>, document.body
+        <Modal isOpen={changeData}>{getModalForm()}</Modal>,
+        document.body
       )}
     </div>
   );
