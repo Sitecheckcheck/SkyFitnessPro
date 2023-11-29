@@ -7,14 +7,10 @@ export const ProgressBar = ({ color, bgcolor, progress }) => {
     progressAlign = "center";
     progressRightBorderRadius = "22px";
     progressPaddingRight = "0px";
-  } else if (progress > 0 && progress < 100) {
+  } else {
     progressAlign = "right";
     progressRightBorderRadius = "22px";
     progressPaddingRight = "15px";
-  } else {
-    progressAlign = "center";
-    progressRightBorderRadius = "22px";
-    progressPaddingRight = "0px";
   }
 
   const Parentdiv = {

@@ -4,10 +4,19 @@ import styles from "./Form.module.css";
 export const Progress = ({
   onFormClose,
   onFormSubmited,
-  onFirstInputChange,
-  onSecondInputChange,
-  onThirdInputChange,
+  formValues,
+  setFormValues,
 }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formValues);
+  };
+  const handleChange = (e, index) => {
+    const values = [...formValues];
+    values[index] = e.target.value;
+    setFormValues(values);
+    // console.log(formValues);
+  };
   return (
     <div className={styles.page}>
       <div className={styles.progressForm}>
@@ -55,52 +64,57 @@ export const Progress = ({
             </g>
           </g>
         </svg>
-        <div className={styles.headerForm}>Мой прогресс</div>
-        <div className={styles.textForm}>
-          Сколько раз вы сделали наклоны вперед?
-        </div>
-        <div className={styles.inputBox}>
-          <input
-            className={styles.inputForm}
-            type="text"
-            name="quantity"
-            placeholder="Введите значение"
-            onInput={(e) => onFirstInputChange((e.target.value / 10) * 100)}
-          ></input>
-        </div>
-        <div className={styles.textForm}>
-          Сколько раз вы сделали наклоны назад?
-        </div>
-        <div className={styles.inputBox}>
-          <input
-            className={styles.inputForm}
-            type="text"
-            name="quantity"
-            placeholder="Введите значение"
-            onInput={(e) => onSecondInputChange((e.target.value / 10) * 100)}
-          ></input>
-        </div>
-        <div className={styles.textForm}>
-          Сколько раз вы сделали поднятие ног, согнутых в коленях?
-        </div>
-        <div className={styles.inputBox}>
-          <input
-            className={styles.inputForm}
-            type="text"
-            name="quantity"
-            placeholder="Введите значение"
-            onInput={(e) => onThirdInputChange((e.target.value / 5) * 100)}
-          ></input>
-        </div>
-        <div className={styles.buttonForm}>
-          <Button
-            text="Отправить"
-            onClick={() => {
-              console.log("send");
-              onFormSubmited();
-            }}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.headerForm}>Мой прогресс</div>
+          <div className={styles.textForm}>
+            Сколько раз вы сделали наклоны вперед?
+          </div>
+          <div className={styles.inputBox}>
+            <input
+              key={1}
+              className={styles.inputForm}
+              type="text"
+              name="quantity"
+              placeholder="Введите значение"
+              onInput={(e) => handleChange(e, 0)}
+            ></input>
+          </div>
+          <div className={styles.textForm}>
+            Сколько раз вы сделали наклоны назад?
+          </div>
+          <div className={styles.inputBox}>
+            <input
+              key={2}
+              className={styles.inputForm}
+              type="text"
+              name="quantity"
+              placeholder="Введите значение"
+              onInput={(e) => handleChange(e, 1)}
+            ></input>
+          </div>
+          <div className={styles.textForm}>
+            Сколько раз вы сделали поднятие ног, согнутых в коленях?
+          </div>
+          <div className={styles.inputBox}>
+            <input
+              key={3}
+              className={styles.inputForm}
+              type="text"
+              name="quantity"
+              placeholder="Введите значение"
+              onInput={(e) => handleChange(e, 2)}
+            ></input>
+          </div>
+          <div className={styles.buttonForm}>
+            <Button
+              text="Отправить"
+              onClick={() => {
+                console.log("send");
+                onFormSubmited();
+              }}
+            />
+          </div>
+        </form>
       </div>
     </div>
   );
