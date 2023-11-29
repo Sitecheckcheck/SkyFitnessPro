@@ -10,6 +10,9 @@ import "./workout-video-page.css";
 //
 export const WorkoutVideoPage = ({ login }) => {
   const [progress, setProgress] = useState("");
+  let [firstInput, onFirstInputChange] = useState("0");
+  let [secondInput, onSecondInputChange] = useState("0");
+  let [thirdInput, onThirdInputChange] = useState("0");
 
   const getModalForm = () => {
     switch (progress) {
@@ -18,6 +21,9 @@ export const WorkoutVideoPage = ({ login }) => {
           <Progress
             onFormClose={() => setProgress("")}
             onFormSubmited={() => setProgress("progresscheck")}
+            onFirstInputChange={onFirstInputChange}
+            onSecondInputChange={onSecondInputChange}
+            onThirdInputChange={onThirdInputChange}
           />
         );
       case "progresscheck":
@@ -71,11 +77,19 @@ export const WorkoutVideoPage = ({ login }) => {
               <br />
               <div className="progress-line">
                 <div className="progress-text">Наклоны вперед</div>
-                <ProgressBar color="#565EEF" bgcolor="#EDECFF" progress="45" />
+                <ProgressBar
+                  color="#565EEF"
+                  bgcolor="#EDECFF"
+                  progress={firstInput <= 100 ? firstInput : 100}
+                />
               </div>
               <div className="progress-line">
                 <div className="progress-text">Наклоны назад</div>
-                <ProgressBar color="#FF6D00" bgcolor="#FFF2E0" progress="45" />
+                <ProgressBar
+                  color="#FF6D00"
+                  bgcolor="#FFF2E0"
+                  progress={secondInput <= 100 ? secondInput : 100}
+                />
               </div>
               <div className="progress-line">
                 <div className="progress-text">
@@ -83,7 +97,11 @@ export const WorkoutVideoPage = ({ login }) => {
                   <br />
                   согнутых в коленях
                 </div>
-                <ProgressBar color="#9A48F1" bgcolor="#F9EBFF" progress="45" />
+                <ProgressBar
+                  color="#9A48F1"
+                  bgcolor="#F9EBFF"
+                  progress={thirdInput <= 100 ? thirdInput : 100}
+                />
               </div>
             </div>
           </div>

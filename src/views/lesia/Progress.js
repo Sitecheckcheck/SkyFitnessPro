@@ -1,7 +1,13 @@
 import { Button } from "./Button";
 import styles from "./Form.module.css";
 
-export const Progress = ({ onFormClose, onFormSubmited }) => {
+export const Progress = ({
+  onFormClose,
+  onFormSubmited,
+  onFirstInputChange,
+  onSecondInputChange,
+  onThirdInputChange,
+}) => {
   return (
     <div className={styles.page}>
       <div className={styles.progressForm}>
@@ -59,7 +65,7 @@ export const Progress = ({ onFormClose, onFormSubmited }) => {
             type="text"
             name="quantity"
             placeholder="Введите значение"
-            onSubmit={(e) => console.log(e.target.value)}
+            onInput={(e) => onFirstInputChange((e.target.value / 10) * 100)}
           ></input>
         </div>
         <div className={styles.textForm}>
@@ -71,6 +77,7 @@ export const Progress = ({ onFormClose, onFormSubmited }) => {
             type="text"
             name="quantity"
             placeholder="Введите значение"
+            onInput={(e) => onSecondInputChange((e.target.value / 10) * 100)}
           ></input>
         </div>
         <div className={styles.textForm}>
@@ -82,6 +89,7 @@ export const Progress = ({ onFormClose, onFormSubmited }) => {
             type="text"
             name="quantity"
             placeholder="Введите значение"
+            onInput={(e) => onThirdInputChange((e.target.value / 5) * 100)}
           ></input>
         </div>
         <div className={styles.buttonForm}>

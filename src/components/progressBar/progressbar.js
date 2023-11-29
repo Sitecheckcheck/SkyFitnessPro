@@ -2,15 +2,21 @@ export const ProgressBar = ({ color, bgcolor, progress }) => {
   let progressRightBorderRadius;
   let progressAlign;
   let progressPaddingRight;
+
   if (progress === "100") {
     progressAlign = "center";
     progressRightBorderRadius = "22px";
     progressPaddingRight = "0px";
-  } else {
+  } else if (progress > 0 && progress < 100) {
     progressAlign = "right";
-    progressRightBorderRadius = "0px";
+    progressRightBorderRadius = "22px";
     progressPaddingRight = "15px";
+  } else {
+    progressAlign = "center";
+    progressRightBorderRadius = "22px";
+    progressPaddingRight = "0px";
   }
+
   const Parentdiv = {
     height: "36px",
     width: "278px",
