@@ -6,7 +6,7 @@ import { ChangeLogin } from "../../lesia/ChangeLogin";
 import { ChangePassword } from "../../lesia/ChangePassword";
 import { SelectWorkout } from "../../lesia/SelectWorkout";
 import { Modal } from "../../lesia/Modal";
-import { Popupmenu } from "../../../components/popup-menu";
+import { Popupmenu } from "../../../components/popup-menu/popup-menu";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");

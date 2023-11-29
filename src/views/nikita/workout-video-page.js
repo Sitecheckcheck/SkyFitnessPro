@@ -3,7 +3,9 @@ import { createPortal } from "react-dom";
 import { Progress } from "../lesia/Progress";
 import { ProgressCheck } from "../lesia/ProgressCheck";
 import { Modal } from "../lesia/Modal";
-import { Popupmenu } from "../../components/popup-menu";
+import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { useNavigate } from "react-router-dom";
+import { ProgressBar } from "../../components/progressBar/progressbar";
 import "./workout-video-page.css";
 //
 export const WorkoutVideoPage = ({ login }) => {
@@ -25,11 +27,13 @@ export const WorkoutVideoPage = ({ login }) => {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="wrapper">
         <div className="logo-wrapper">
-          <div className="logo" />
+          <div className="logo" onClick={() => navigate("/")} />
           <Popupmenu login={login} />
         </div>
         <div className="content-wrapper">
@@ -67,11 +71,11 @@ export const WorkoutVideoPage = ({ login }) => {
               <br />
               <div className="progress-line">
                 <div className="progress-text">Наклоны вперед</div>
-                <div className="progress-one"></div>
+                <ProgressBar color="#565EEF" bgcolor="#EDECFF" progress="45" />
               </div>
               <div className="progress-line">
                 <div className="progress-text">Наклоны назад</div>
-                <div className="progress-two"></div>
+                <ProgressBar color="#FF6D00" bgcolor="#FFF2E0" progress="45" />
               </div>
               <div className="progress-line">
                 <div className="progress-text">
@@ -79,7 +83,7 @@ export const WorkoutVideoPage = ({ login }) => {
                   <br />
                   согнутых в коленях
                 </div>
-                <div className="progress-three"></div>
+                <ProgressBar color="#9A48F1" bgcolor="#F9EBFF" progress="45" />
               </div>
             </div>
           </div>
