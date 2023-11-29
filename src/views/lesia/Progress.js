@@ -59,7 +59,7 @@ export const Progress = ({ onFormClose, onFormSubmited }) => {
             type="text"
             name="quantity"
             placeholder="Введите значение"
-            // onSubmit={(e) => console.log(e.target.value)}
+            onSubmit={(e) => console.log(e.target.value)}
           ></input>
         </div>
         <div className={styles.textForm}>
