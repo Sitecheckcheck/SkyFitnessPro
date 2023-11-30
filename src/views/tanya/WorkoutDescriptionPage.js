@@ -4,10 +4,23 @@ import { Modal } from "../lesia/Modal";
 import { Button } from "../lesia/Button";
 import { Appointment } from "../lesia/Appointment";
 import styles from "./WorkoutDescriptionPage.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetAllCoursesQuery } from "../../store/coursesApi";
+import CourseBanner from "../../components/courseBanner/courseBanner";
 
 export const WorkoutDescriptionPage = () => {
   const [isOpen, setIsOpen] = useState("");
+  const params = useParams();
+  const pageId = params.id;
+
+  const { data } = useGetAllCoursesQuery();
+  const allCourses = [];
+  if (data) {
+    const keys = Object.keys(data);
+    keys.forEach((key) => allCourses.push(data[key]));
+  }
+
+  const coursePage = allCourses.filter((el) => el._id === pageId)[0];
 
   const getModalForm = () => {
     return (
@@ -16,17 +29,21 @@ export const WorkoutDescriptionPage = () => {
   };
   const navigate = useNavigate();
 
+  const directions = coursePage?.directions;
+
+  const list = directions?.map((element, index) => (
+    <li key={index}>{element}</li>
+  ));
+
   return (
-    <div className={`${styles.wrapper} container`}>
-      <div className={styles.logoBox} onClick={() => navigate("/")}>
-        <img src="img/logoblack.svg" alt="logo" />
+    <div className={`container`}>
+      <div onClick={() => navigate("/")}>
+        <img src="/img/logoblack.svg" alt="logo" />
       </div>
       <br />
       <br />
       <br />
-      <div name={styles.banner}>
-        <img src="img/skillcard.svg" alt="banner" />
-      </div>
+      <CourseBanner name={coursePage?.name} />
       <div>
         <div className={styles.heading}>Подойдет для вас, если:</div>
         <div style={{ paddingTop: "40px" }}>
@@ -57,26 +74,12 @@ export const WorkoutDescriptionPage = () => {
         <div className={styles.heading}>Направления:</div>
         <div className={styles["content-container"]}>
           <div className={`${styles.directions} small-text`}>
-            <ul>
-              <li className={styles.direction}>Йога для новичков</li>
-              <li className={styles.direction}>Классическая йога</li>
-              <li className={styles.direction}>Йогатерапия</li>
-            </ul>
-          </div>
-          <div className="small-text">
-            <ul>
-              <li>Кундалини-йога</li>
-              <li>Хатха-йога</li>
-              <li>Аштанга-йога</li>
-            </ul>
+            <ul>{list}</ul>
           </div>
         </div>
       </div>
       <p className={`${styles.text} small-text`}>
-        Благодаря комплексному воздействию упражнений происходит проработка всех
-        групп мышц, тренировка суставов, улучшается циркуляция крови. Кроме
-        того, упражнения дарят отличное настроение, заряжают бодростью и
-        помогают противостоять стрессам.
+        {coursePage ? coursePage.description : ""}
       </p>
       <div className={styles.left}>
         <div className={styles.lefttext}>

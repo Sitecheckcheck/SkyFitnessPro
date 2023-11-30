@@ -4,17 +4,36 @@ import styles from "./ProfilePage.module.css";
 import { NavLink } from "react-router-dom";
 import { ChangeLogin } from "../../lesia/ChangeLogin";
 import { ChangePassword } from "../../lesia/ChangePassword";
-import {SelectWorkout} from "../../lesia/SelectWorkout"
+import { SelectWorkout } from "../../lesia/SelectWorkout";
 import { Modal } from "../../lesia/Modal";
+import { useGetAllCoursesQuery } from "../../../store/coursesApi";
+import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
 
-export const ProfilePage = ({login}) => {
-  const [changeData, setChangeData] = useState('');
+export const ProfilePage = ({ login }) => {
+  const [changeData, setChangeData] = useState("");
+  const id = localStorage.getItem("id");
 
-  const usersCourses = [
-    { name: "Йога" },
-    { name: "Стретчинг" },
-    { name: "Бодифлекс" },
-  ];
+  const { data } = useGetAllCoursesQuery();
+  const allCourses = [];
+  if (data) {
+    const keys = Object.keys(data);
+    keys.forEach((key) => allCourses.push(data[key]));
+  }
+
+  const dataUsers = useGetUserCoursesQuery().data;
+
+  const usersCourses = [];
+  if (allCourses && dataUsers && dataUsers[id]) {
+    const coursesId = dataUsers[id].courses;
+
+    for (let i = 0; i < allCourses.length; i++) {
+      for (let j = 0; j < coursesId.length; j++) {
+        if (allCourses[i]._id === coursesId[j]) {
+          usersCourses.push(allCourses[i]);
+        }
+      }
+    }
+  }
 
   const handleImg = (item) => {
     switch (item.name) {
@@ -37,16 +56,16 @@ export const ProfilePage = ({login}) => {
 
   const getModalForm = () => {
     switch (changeData) {
-    case 'login':
-      return <ChangeLogin onFormClose={() => setChangeData('')}/>
-    case 'password':
-      return <ChangePassword onFormClose={() => setChangeData('')}/>
-    case 'workouts':
-      return <SelectWorkout onFormClose={() => setChangeData('')}/>
-    default:
-      return null
+      case "login":
+        return <ChangeLogin onFormClose={() => setChangeData("")} />;
+      case "password":
+        return <ChangePassword onFormClose={() => setChangeData("")} />;
+      case "workouts":
+        return <SelectWorkout onFormClose={() => setChangeData("")} />;
+      default:
+        return null;
     }
-  } 
+  };
 
   return (
     <div className={styles.main}>
@@ -57,7 +76,6 @@ export const ProfilePage = ({login}) => {
           </div>
         </NavLink>
         <div>
-
           <NavLink className={styles.user} to="/profile">
             <img src="img/Ellipse.svg" alt="" />
             <p>{login}</p>
@@ -70,8 +88,18 @@ export const ProfilePage = ({login}) => {
           <p className={styles.content_user_item}>Логин: {login}</p>
         </div>
         <div className={styles.content_buttons}>
-          <button className={styles.button_edit} onClick={() => setChangeData('login')}>Редактировать логин</button>
-          <button className={styles.button_edit} onClick={() => setChangeData('password')}>Редактировать пароль</button>
+          <button
+            className={styles.button_edit}
+            onClick={() => setChangeData("login")}
+          >
+            Редактировать логин
+          </button>
+          <button
+            className={styles.button_edit}
+            onClick={() => setChangeData("password")}
+          >
+            Редактировать пароль
+          </button>
         </div>
       </div>
       <div className={styles.content_profile}>
@@ -85,19 +113,14 @@ export const ProfilePage = ({login}) => {
                 src={handleImg(item)}
                 alt="fitness_img"
               />
-              <div
-                // onClick={() => {
-                //   //navigate(`/course/${item._id}`);
-                // }}
-                className={styles.button}
-              >
+              <div className={styles.button}>
                 <div className={styles.box}>
                   <button
                     className={styles.button_courses}
-                    onClick={() => setChangeData('workouts')}
-                    >
+                    onClick={() => setChangeData("workouts")}
+                  >
                     Перейти →
-                    </button>
+                  </button>
                 </div>
               </div>
             </div>
@@ -105,7 +128,8 @@ export const ProfilePage = ({login}) => {
         </div>
       </div>
       {createPortal(
-        <Modal isOpen={changeData}>{getModalForm()}</Modal>, document.body
+        <Modal isOpen={changeData}>{getModalForm()}</Modal>,
+        document.body
       )}
     </div>
   );

@@ -10,7 +10,8 @@
   font-family: "Regular", Arial, Helvetica, sans-serif;
 }
 :global(.container) {
-  padding: 30px 140px 60px 140px;
+  padding-left: calc(50% - 577px);
+  padding-right: calc(50% - 577px);
 }
 
 :global(.small-text) {
@@ -30,13 +31,6 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-
-.banner {
-  width: 100%;
-  height: 310px;
-  border-radius: 30px;
-  margin-top: 40px;
 }
 
 .heading {
