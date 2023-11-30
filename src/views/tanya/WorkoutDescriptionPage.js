@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Modal } from "../lesia/Modal";
-import { Button } from "../lesia/Button";
-import { Appointment } from "../lesia/Appointment";
+import { Modal } from "../../components/modal/Modal";
+import { Button } from "../../components/button/Button";
+import { Appointment } from "../../components/appointment/Appointment";
 import styles from "./WorkoutDescriptionPage.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";

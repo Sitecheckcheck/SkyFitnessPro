@@ -2,12 +2,12 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ProfilePage.module.css";
 import { NavLink } from "react-router-dom";
-import { ChangeLogin } from "../../lesia/ChangeLogin";
-import { ChangePassword } from "../../lesia/ChangePassword";
-import { SelectWorkout } from "../../lesia/SelectWorkout";
-import { ChangeSucsess } from "../../lesia/ChangeSucsess";
-import { UpdateAuth } from "../../lesia/UpdateAuth";
-import { Modal } from "../../lesia/Modal";
+import { ChangeLogin } from "../../../components/profileChanges/ChangeLogin";
+import { ChangePassword } from "../../../components/profileChanges/ChangePassword";
+import { SelectWorkout } from "../../../components/selectWorkout/SelectWorkout";
+import { ChangeSucsess } from "../../../components/profileChanges/ChangeSucsess";
+import { UpdateAuth } from "../../../components/profileChanges/UpdateAuth";
+import { Modal } from "../../../components/modal/Modal";
 import { useGetAllCoursesQuery } from "../../../store/coursesApi";
 import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
 
@@ -57,43 +57,53 @@ export const ProfilePage = ({ login }) => {
   const getModalForm = () => {
     switch (changeData) {
       case "login":
-        return (<ChangeLogin
-          onFormClose={() => setChangeData("")}
-          onFormSubmited={() => setChangeData("loginChanged")}
-          onFormError={() => setChangeData("errorLogin")}
+        return (
+          <ChangeLogin
+            onFormClose={() => setChangeData("")}
+            onFormSubmited={() => setChangeData("loginChanged")}
+            onFormError={() => setChangeData("errorLogin")}
           />
         );
       case "password":
-        return (<ChangePassword
-          onFormClose={() => setChangeData("")}
-          onFormSubmited={() => setChangeData("passwordChanged")}
-          onFormError={() => setChangeData("errorPassword")}
+        return (
+          <ChangePassword
+            onFormClose={() => setChangeData("")}
+            onFormSubmited={() => setChangeData("passwordChanged")}
+            onFormError={() => setChangeData("errorPassword")}
           />
         );
       case "workouts":
         return <SelectWorkout onFormClose={() => setChangeData("")} />;
       case "passwordChanged":
-        return <ChangeSucsess
-          onFormClose={() => setChangeData("")}
-          text={"Пароль успешно изменен"}
-        />;
+        return (
+          <ChangeSucsess
+            onFormClose={() => setChangeData("")}
+            text={"Пароль успешно изменен"}
+          />
+        );
       case "loginChanged":
-        return <ChangeSucsess
-          onFormClose={() => setChangeData("")}
-          text={"Логин успешно изменен"}
-        />;
+        return (
+          <ChangeSucsess
+            onFormClose={() => setChangeData("")}
+            text={"Логин успешно изменен"}
+          />
+        );
       case "errorLogin":
-        return <UpdateAuth
-          onFormClose={() => setChangeData("")}
-          onFormNewForm={() => setChangeData("login")}
-          text={"Для смены логина нужно еще раз залогиниться"}
-        />
-        case "errorPassword":
-          return <UpdateAuth
+        return (
+          <UpdateAuth
+            onFormClose={() => setChangeData("")}
+            onFormNewForm={() => setChangeData("login")}
+            text={"Для смены логина нужно еще раз залогиниться"}
+          />
+        );
+      case "errorPassword":
+        return (
+          <UpdateAuth
             onFormClose={() => setChangeData("")}
             onFormNewForm={() => setChangeData("login")}
             text={"Для смены пароля нужно еще раз залогиниться"}
           />
+        );
       default:
         return null;
     }

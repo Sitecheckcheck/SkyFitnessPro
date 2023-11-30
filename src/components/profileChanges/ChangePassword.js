@@ -1,21 +1,24 @@
 import { getAuth, updatePassword } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { Button } from "./Button";
-import styles from "./Form.module.css";
+import { Button } from "../button/Button";
+import styles from "../../styles/Form.module.css";
 
-export const ChangePassword = ({ onFormClose, onFormSubmited, onFormError }) => {
+export const ChangePassword = ({
+  onFormClose,
+  onFormSubmited,
+  onFormError,
+}) => {
   const auth = getAuth();
 
-  const [newPassword, setNewPassword] = useState('');
+  const [newPassword, setNewPassword] = useState("");
   const [repeatNewPassword, setRepeatNewPassword] = useState("");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isSubmiting, setIsSubmiting] = useState(false);
 
   const changeLogin = () => {
     if (!newPassword) {
-      setError('Укажите новый пароль');
+      setError("Укажите новый пароль");
       return;
-      
     } else if (newPassword.length < 6) {
       setError("Введен слишком короткий пароль");
       return;
@@ -27,22 +30,24 @@ export const ChangePassword = ({ onFormClose, onFormSubmited, onFormError }) => 
     }
 
     setIsSubmiting(true);
-    
+
     const user = auth.currentUser;
 
-    updatePassword(user, newPassword).then(() => {
-      setIsSubmiting(false);
-      console.log("Обновили пароль")
-      onFormSubmited();
-    }).catch((error) => {
-      console.log(error);
-      if (error.message.includes(("requires-recent-login"))) {
-        onFormError();
-      }
-      setIsSubmiting(false);
-      setError(error.message)
-    });
-  }
+    updatePassword(user, newPassword)
+      .then(() => {
+        setIsSubmiting(false);
+        console.log("Обновили пароль");
+        onFormSubmited();
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.message.includes("requires-recent-login")) {
+          onFormError();
+        }
+        setIsSubmiting(false);
+        setError(error.message);
+      });
+  };
 
   useEffect(() => {
     setError(null);
@@ -120,7 +125,10 @@ export const ChangePassword = ({ onFormClose, onFormSubmited, onFormError }) => 
           }}
         />
       </div>
-      <Button text={isSubmiting ? "Сохраняем" : "Сохранить"} onClick={() => changeLogin(newPassword)}/>
+      <Button
+        text={isSubmiting ? "Сохраняем" : "Сохранить"}
+        onClick={() => changeLogin(newPassword)}
+      />
       {error && <div className={styles.inputError}>{error}</div>}
     </div>
   );

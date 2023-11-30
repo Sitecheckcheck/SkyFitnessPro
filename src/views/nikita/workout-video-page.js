@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Progress } from "../lesia/Progress";
-import { ProgressCheck } from "../lesia/ProgressCheck";
-import { Modal } from "../lesia/Modal";
+import { Progress } from "../../components/workoutProgressForms/Progress";
+import { ProgressCheck } from "../../components/workoutProgressForms/ProgressCheck";
+import { Modal } from "../../components/modal/Modal";
 import { Popupmenu } from "../../components/popup-menu/popup-menu";
 import { useNavigate } from "react-router-dom";
 import { ProgressBar } from "../../components/progressBar/progressbar";

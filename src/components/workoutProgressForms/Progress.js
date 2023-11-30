@@ -1,5 +1,5 @@
-import { Button } from "./Button";
-import styles from "./Form.module.css";
+import { Button } from "../button/Button";
+import styles from "../../styles/Form.module.css";
 
 export const Progress = ({
   onFormClose,

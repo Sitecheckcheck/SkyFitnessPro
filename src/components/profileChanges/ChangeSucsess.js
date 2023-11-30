@@ -1,4 +1,4 @@
-import styles from "./Form.module.css";
+import styles from "../../styles/Form.module.css";
 
 export const ChangeSucsess = ({ text, onFormClose }) => {
   

@@ -1,15 +1,15 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { Button } from "./Button";
+import { Button } from "../components/button/Button";
 import { useDispatch } from "react-redux";
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { setUser } from "../../store/slices/userSlice";
+import { setUser } from "../store/slices/userSlice";
 import { useState, useEffect } from "react";
 
-import styles from "./Form.module.css";
+import styles from "../styles/Form.module.css";
 
 export const AuthPage = ({ isLoginMode }) => {
   const [email, setEmail] = useState("");
@@ -27,18 +27,18 @@ export const AuthPage = ({ isLoginMode }) => {
     if (!email || !password) {
       setError("Укажите почту/пароль");
       return;
-    };
-    
+    }
+
     if (email.length < 3) {
       setError("Введенный E-mail слишком короткий");
       return;
-    };
+    }
 
     if (password.length < 6) {
       setError("Введенный пароль слишком короткий");
 
       return;
-    };
+    }
 
     setIsSubmiting(true);
     signInWithEmailAndPassword(auth, email, password)
@@ -61,12 +61,15 @@ export const AuthPage = ({ isLoginMode }) => {
       .catch((error) => {
         console.log(error);
         setIsSubmiting(false);
-        if (error.message.includes("user-not-found") || error.message.includes("auth/wrong-password")) {
-          setError("Не верный E-mail/пароль")
-        } else { 
+        if (
+          error.message.includes("user-not-found") ||
+          error.message.includes("auth/wrong-password")
+        ) {
+          setError("Не верный E-mail/пароль");
+        } else {
           setError(error.message);
-        };
-      })
+        }
+      });
   };
 
   const handleSignin = () => {
@@ -83,13 +86,13 @@ export const AuthPage = ({ isLoginMode }) => {
     if (email.length < 3) {
       setError("Введенный E-mail слишком короткий");
       return;
-    };
+    }
 
     if (password.length < 6) {
       setError("Введенный пароль слишком короткий");
 
       return;
-    };
+    }
 
     setIsSubmiting(true);
     setError("");
@@ -114,10 +117,10 @@ export const AuthPage = ({ isLoginMode }) => {
         console.log(error);
 
         if (error.message.includes("email-already-in-use")) {
-          setError("Такой пользователь уже существует")
+          setError("Такой пользователь уже существует");
         } else if (error.message.includes("auth/invalid-email")) {
-          setError("Введен некорректный email")
-        } else { 
+          setError("Введен некорректный email");
+        } else {
           setError(error.message);
         }
         setIsSubmiting(false);
