@@ -29,7 +29,7 @@
   border: none;
   border-bottom: 1px solid #d0cece;
   margin: 0 47px 0 41px;
-  color: #D0CECE;
+  /* color: #D0CECE; */
   font-variant-numeric: lining-nums proportional-nums;
   font-family: StratosSkyeng;
   font-size: 18px;
@@ -145,4 +145,12 @@
 .closeButton {
   padding: 10px;
   align-self: flex-end;
+}
+
+.changeText {
+  margin: 0 47px 0 41px;
+  justify-content: center;
+  line-height: 140%;
+  display: flex;
+  font-size: 20px;
 }
