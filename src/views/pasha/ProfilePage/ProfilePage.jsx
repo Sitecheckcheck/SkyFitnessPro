@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { ChangeLogin } from "../../lesia/ChangeLogin";
 import { ChangePassword } from "../../lesia/ChangePassword";
 import { SelectWorkout } from "../../lesia/SelectWorkout";
+import { ChangeSucsess } from "../../lesia/ChangeSucsess";
 import { Modal } from "../../lesia/Modal";
 import { Popupmenu } from "../../../components/popup-menu";
 
@@ -39,11 +40,27 @@ export const ProfilePage = ({ login }) => {
   const getModalForm = () => {
     switch (changeData) {
       case "login":
-        return <ChangeLogin onFormClose={() => setChangeData("")} />;
+        return (<ChangeLogin
+          onFormClose={() => setChangeData("")}
+          onFormSubmited={() => setChangeData("loginChanged")}
+          />
+        );
       case "password":
-        return <ChangePassword onFormClose={() => setChangeData("")} />;
+        return (<ChangePassword
+          onFormClose={() => setChangeData("")}
+          onFormSubmited={() => setChangeData("passwordChanged")}
+          />
+        );
       case "workouts":
         return <SelectWorkout onFormClose={() => setChangeData("")} />;
+      case "passwordChanged":
+        return <ChangeSucsess
+          onFormClose={() => setChangeData("")}
+          text={"Пароль успешно изменен"}/>;
+      case "loginChanged":
+        return <ChangeSucsess
+          onFormClose={() => setChangeData("")}
+          text={"Логин успешно изменен"}/>;
       default:
         return null;
     }

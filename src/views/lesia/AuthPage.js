@@ -27,7 +27,18 @@ export const AuthPage = ({ isLoginMode }) => {
     if (!email || !password) {
       setError("Укажите почту/пароль");
       return;
-    }
+    };
+    
+    if (email.length < 3) {
+      setError("Введенный E-mail слишком короткий");
+      return;
+    };
+
+    if (password.length < 6) {
+      setError("Введенный пароль слишком короткий");
+
+      return;
+    };
 
     setIsSubmiting(true);
     signInWithEmailAndPassword(auth, email, password)
@@ -49,7 +60,11 @@ export const AuthPage = ({ isLoginMode }) => {
       })
       .catch((error) => {
         setIsSubmiting(false);
-        setError(error.message);
+        if (error.message.includes("user-not-found")) {
+          setError("Не верный E-mail/пароль")
+        } else { 
+          setError(error.message);
+        };
       })
   };
 
@@ -63,6 +78,17 @@ export const AuthPage = ({ isLoginMode }) => {
       setError("Пароли не совпадают");
       return;
     }
+
+    if (email.length < 3) {
+      setError("Введенный E-mail слишком короткий");
+      return;
+    };
+
+    if (password.length < 6) {
+      setError("Введенный пароль слишком короткий");
+
+      return;
+    };
 
     setIsSubmiting(true);
     setError("");
@@ -84,7 +110,11 @@ export const AuthPage = ({ isLoginMode }) => {
         navigate("/profile");
       })
       .catch((error) => {
-        setError(error.message);
+        if (error.message.includes("email-already-in-use")) {
+          setError("Такой пользователь уже существует")
+        } else { 
+          setError(error.message);
+        }
         setIsSubmiting(false);
       });
   };
