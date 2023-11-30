@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "./Button";
 import styles from "./Form.module.css";
 
-export const ChangePassword = ({ onFormClose, onFormSubmited }) => {
+export const ChangePassword = ({ onFormClose, onFormSubmited, onFormError }) => {
   const auth = getAuth();
 
   const [newPassword, setNewPassword] = useState('');
@@ -35,6 +35,10 @@ export const ChangePassword = ({ onFormClose, onFormSubmited }) => {
       console.log("Обновили пароль")
       onFormSubmited();
     }).catch((error) => {
+      console.log(error);
+      if (error.message.includes(("requires-recent-login"))) {
+        onFormError();
+      }
       setIsSubmiting(false);
       setError(error.message)
     });

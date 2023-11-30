@@ -147,7 +147,8 @@
   align-self: flex-end;
 }
 
-.changeSucsessText {
+.changeText {
+  margin: 0 47px 0 41px;
   justify-content: center;
   line-height: 140%;
   display: flex;

@@ -1,16 +1,13 @@
 import { getAuth, updateEmail} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "./Button";
 import { updateUser } from "../../store/slices/userSlice";
 import styles from "./Form.module.css";
 
-export const ChangeLogin = ({onFormClose}) => {
+export const ChangeLogin = ({onFormClose, onFormError, onFormSubmited}) => {
   const auth = getAuth();
-  const user = auth.currentUser;
-  
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const [newEmail, setNewEmail] = useState('');
@@ -39,12 +36,14 @@ export const ChangeLogin = ({onFormClose}) => {
           email: user.email,
         })
       );
-      navigate('/profile');
+      onFormSubmited();
     }).catch((error) => {
       setIsSubmiting(false);
       if (error.message.includes("requires-recent-login")) {
-        setError('Пользователь с таким логином уже существует');
+        onFormError();
         console.log(error);
+      } else if (error.message.includes("auth/invalid-email")) {
+        setError("Введен некорректный email")
       } else {
         setError(error.message);
       };

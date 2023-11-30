@@ -6,6 +6,7 @@ import { ChangeLogin } from "../../lesia/ChangeLogin";
 import { ChangePassword } from "../../lesia/ChangePassword";
 import { SelectWorkout } from "../../lesia/SelectWorkout";
 import { ChangeSucsess } from "../../lesia/ChangeSucsess";
+import { UpdateAuth } from "../../lesia/UpdateAuth";
 import { Modal } from "../../lesia/Modal";
 import { Popupmenu } from "../../../components/popup-menu";
 
@@ -35,20 +36,20 @@ export const ProfilePage = ({ login }) => {
     }
   };
 
-  // const navigate = useNavigate();
-
   const getModalForm = () => {
     switch (changeData) {
       case "login":
         return (<ChangeLogin
           onFormClose={() => setChangeData("")}
           onFormSubmited={() => setChangeData("loginChanged")}
+          onFormError={() => setChangeData("errorLogin")}
           />
         );
       case "password":
         return (<ChangePassword
           onFormClose={() => setChangeData("")}
           onFormSubmited={() => setChangeData("passwordChanged")}
+          onFormError={() => setChangeData("errorPassword")}
           />
         );
       case "workouts":
@@ -56,11 +57,25 @@ export const ProfilePage = ({ login }) => {
       case "passwordChanged":
         return <ChangeSucsess
           onFormClose={() => setChangeData("")}
-          text={"Пароль успешно изменен"}/>;
+          text={"Пароль успешно изменен"}
+        />;
       case "loginChanged":
         return <ChangeSucsess
           onFormClose={() => setChangeData("")}
-          text={"Логин успешно изменен"}/>;
+          text={"Логин успешно изменен"}
+        />;
+      case "errorLogin":
+        return <UpdateAuth
+          onFormClose={() => setChangeData("")}
+          onFormNewForm={() => setChangeData("login")}
+          text={"Для смены логина нужно еще раз залогиниться"}
+        />
+        case "errorPassword":
+          return <UpdateAuth
+            onFormClose={() => setChangeData("")}
+            onFormNewForm={() => setChangeData("login")}
+            text={"Для смены пароля нужно еще раз залогиниться"}
+          />
       default:
         return null;
     }
