@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeUser } from "../store/slices/userSlice";
+import { removeUser } from "../../store/slices/userSlice";
 import "./popup-menu.css";
 
 export const Popupmenu = ({

@@ -3,11 +3,19 @@ import { createPortal } from "react-dom";
 import { Progress } from "../lesia/Progress";
 import { ProgressCheck } from "../lesia/ProgressCheck";
 import { Modal } from "../lesia/Modal";
-import { Popupmenu } from "../../components/popup-menu";
+import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { useNavigate } from "react-router-dom";
+import { ProgressBar } from "../../components/progressBar/progressbar";
 import "./workout-video-page.css";
 //
 export const WorkoutVideoPage = ({ login }) => {
   const [progress, setProgress] = useState("");
+  // const [formValues, setFormValues] = useState({
+  //   first: "0",
+  //   second: "0",
+  //   third: "0",
+  // });
+  const [formValues, setFormValues] = useState(["0", "0", "0"]);
 
   const getModalForm = () => {
     switch (progress) {
@@ -16,6 +24,8 @@ export const WorkoutVideoPage = ({ login }) => {
           <Progress
             onFormClose={() => setProgress("")}
             onFormSubmited={() => setProgress("progresscheck")}
+            formValues={formValues}
+            setFormValues={setFormValues}
           />
         );
       case "progresscheck":
@@ -25,11 +35,13 @@ export const WorkoutVideoPage = ({ login }) => {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="wrapper">
         <div className="logo-wrapper">
-          <div className="logo" />
+          <div className="logo" onClick={() => navigate("/")} />
           <Popupmenu login={login} />
         </div>
         <div className="content-wrapper">
@@ -67,11 +79,23 @@ export const WorkoutVideoPage = ({ login }) => {
               <br />
               <div className="progress-line">
                 <div className="progress-text">Наклоны вперед</div>
-                <div className="progress-one"></div>
+                <ProgressBar
+                  color="#565EEF"
+                  bgcolor="#EDECFF"
+                  progress={
+                    formValues[0] < 10 ? (formValues[0] / 10) * 100 : 100
+                  }
+                />
               </div>
               <div className="progress-line">
                 <div className="progress-text">Наклоны назад</div>
-                <div className="progress-two"></div>
+                <ProgressBar
+                  color="#FF6D00"
+                  bgcolor="#FFF2E0"
+                  progress={
+                    formValues[1] < 10 ? (formValues[1] / 10) * 100 : 100
+                  }
+                />
               </div>
               <div className="progress-line">
                 <div className="progress-text">
@@ -79,7 +103,11 @@ export const WorkoutVideoPage = ({ login }) => {
                   <br />
                   согнутых в коленях
                 </div>
-                <div className="progress-three"></div>
+                <ProgressBar
+                  color="#9A48F1"
+                  bgcolor="#F9EBFF"
+                  progress={formValues[2] < 5 ? (formValues[2] / 5) * 100 : 100}
+                />
               </div>
             </div>
           </div>
