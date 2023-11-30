@@ -8,7 +8,7 @@ import { SelectWorkout } from "../../lesia/SelectWorkout";
 import { ChangeSucsess } from "../../lesia/ChangeSucsess";
 import { UpdateAuth } from "../../lesia/UpdateAuth";
 import { Modal } from "../../lesia/Modal";
-import { Popupmenu } from "../../../components/popup-menu";
+import { Popupmenu } from "../../../components/popup-menu/popup-menu";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");
