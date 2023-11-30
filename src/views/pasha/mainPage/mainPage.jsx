@@ -16,7 +16,7 @@ export const MainPage = () => {
   const { isAuth, email, id } = useAuth();
   const dataUsers = useGetUserCoursesQuery().data;
   let userCourses = [];
-  if (dataUsers) {
+  if (dataUsers && id) {
     userCourses = dataUsers[id].courses;
   }
 
