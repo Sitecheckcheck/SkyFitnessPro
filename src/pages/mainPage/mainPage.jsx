@@ -1,9 +1,9 @@
 import styles from "./mainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/use-auth";
-import { useGetAllCoursesQuery } from "../../../store/coursesApi";
-import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
-import { Popupmenu } from "../../../components/popup-menu/popup-menu";
+import { useAuth } from "../../hooks/use-auth";
+import { useGetAllCoursesQuery } from "../../store/coursesApi";
+import { useGetUserCoursesQuery } from "../../store/userCoursApi";
+import { Popupmenu } from "../../components/popup-menu/popup-menu";
 
 export const MainPage = () => {
   const { data } = useGetAllCoursesQuery();

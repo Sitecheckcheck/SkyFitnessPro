@@ -2,15 +2,15 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ProfilePage.module.css";
 import { NavLink } from "react-router-dom";
-import { ChangeLogin } from "../../../components/profileChanges/ChangeLogin";
-import { ChangePassword } from "../../../components/profileChanges/ChangePassword";
-import { SelectWorkout } from "../../../components/selectWorkout/SelectWorkout";
-import { ChangeSucsess } from "../../../components/profileChanges/ChangeSucsess";
-import { UpdateAuth } from "../../../components/profileChanges/UpdateAuth";
-import { Modal } from "../../../components/modal/Modal";
-import { useGetAllCoursesQuery } from "../../../store/coursesApi";
-import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
-import { Popupmenu } from "../../../components/popup-menu/popup-menu";
+import { ChangeLogin } from "../../components/profileChanges/ChangeLogin";
+import { ChangePassword } from "../../components/profileChanges/ChangePassword";
+import { SelectWorkout } from "../../components/selectWorkout/SelectWorkout";
+import { ChangeSucsess } from "../../components/profileChanges/ChangeSucsess";
+import { UpdateAuth } from "../../components/profileChanges/UpdateAuth";
+import { Modal } from "../../components/modal/Modal";
+import { useGetAllCoursesQuery } from "../../store/coursesApi";
+import { useGetUserCoursesQuery } from "../../store/userCoursApi";
+import { Popupmenu } from "../../components/popup-menu/popup-menu";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");
