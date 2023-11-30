@@ -10,6 +10,7 @@ import { UpdateAuth } from "../../../components/profileChanges/UpdateAuth";
 import { Modal } from "../../../components/modal/Modal";
 import { useGetAllCoursesQuery } from "../../../store/coursesApi";
 import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
+import { Popupmenu } from "../../../components/popup-menu/popup-menu";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");
@@ -117,12 +118,13 @@ export const ProfilePage = ({ login }) => {
             <img src="img/logoblack.svg" alt="logo" />
           </div>
         </NavLink>
-        <div>
+        {/* <div>
           <NavLink className={styles.user} to="/profile">
             <img src="img/Ellipse.svg" alt="" />
             <p>{login}</p>
           </NavLink>
-        </div>
+        </div> */}
+        <Popupmenu login={login} />
       </div>
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мой профиль</p>
