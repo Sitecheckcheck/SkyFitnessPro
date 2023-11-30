@@ -118,12 +118,6 @@ export const ProfilePage = ({ login }) => {
             <img src="img/logoblack.svg" alt="logo" />
           </div>
         </NavLink>
-        {/* <div>
-          <NavLink className={styles.user} to="/profile">
-            <img src="img/Ellipse.svg" alt="" />
-            <p>{login}</p>
-          </NavLink>
-        </div> */}
         <Popupmenu login={login} />
       </div>
       <div className={styles.content_profile}>

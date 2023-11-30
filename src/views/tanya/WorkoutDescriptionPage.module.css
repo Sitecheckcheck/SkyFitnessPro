@@ -43,6 +43,36 @@
   margin-top: 40px;
 }
 
+.headerWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttonLogin {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 5px 16px 7px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 46px;
+  background: #140d40;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px; /* 150% */
+}
+.buttonLogin:hover {
+  background: #2d1f79;
+  transition: 0.5s;
+}
+.buttonLogin:active {
+  background: #3b29a1;
+  transition: 0.2s;
+}
+
 .reasons {
   display: flex;
   align-items: center;
