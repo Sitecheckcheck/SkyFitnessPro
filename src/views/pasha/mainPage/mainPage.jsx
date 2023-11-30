@@ -1,9 +1,25 @@
 import styles from "./mainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/use-auth";
+import { useGetAllCoursesQuery } from "../../../store/coursesApi";
+import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
 import { Popupmenu } from "../../../components/popup-menu/popup-menu";
 
 export const MainPage = () => {
+  const { data } = useGetAllCoursesQuery();
+  const allCourses = [];
+  if (data) {
+    const keys = Object.keys(data);
+    keys.forEach((key) => allCourses.push(data[key]));
+  }
+
+  const { isAuth, email, id } = useAuth();
+  const dataUsers = useGetUserCoursesQuery().data;
+  let userCourses = [];
+  if (dataUsers && id) {
+    userCourses = dataUsers[id].courses;
+  }
+
   const handleTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,13 +28,6 @@ export const MainPage = () => {
   };
 
   const navigate = useNavigate();
-  const allCourses = [
-    { name: "Стретчинг" },
-    { name: "Бодифлекс" },
-    { name: "Йога" },
-    { name: "Танцевальный фитнес" },
-    { name: "Степ-аэробика" },
-  ];
 
   const handleImg = (item) => {
     switch (item.name) {
@@ -28,7 +37,7 @@ export const MainPage = () => {
         return "/img/bodyflex.png";
       case "Йога":
         return "/img/yoga.png";
-      case "Танцевальный фитнес":
+      case "Танцевальный фитнес ":
         return "/img/dance.png";
       case "Степ-аэробика":
         return "/img/stap.png";
@@ -36,14 +45,13 @@ export const MainPage = () => {
         return "/img/stap.png";
     }
   };
-  const { isAuth, email } = useAuth();
 
   return (
     <section className={`${styles.main}`}>
       <div className={styles.header}>
         <NavLink to="/">
           <div>
-            <img src="img/logo.svg" alt="logo" />
+            <img src="/img/logo.svg" alt="logo" />
           </div>
         </NavLink>
         {isAuth ? (
@@ -68,7 +76,7 @@ export const MainPage = () => {
             </p>
           </div>
           <div>
-            <img src="img/Sale_sticker_1.svg" alt="sale" />
+            <img src="/img/Sale1.svg" alt="sale" />
           </div>
         </div>
         <div className={styles.content_main}>
@@ -76,7 +84,11 @@ export const MainPage = () => {
             <div
               className={styles.img_box}
               onClick={() => {
-                navigate(`/course/${item._id}`);
+                if (userCourses.includes(item._id)) {
+                  navigate(`/workout-video`);
+                } else {
+                  navigate(`/workout-description/${item._id}`);
+                }
               }}
               key={index}
             >

@@ -8,16 +8,34 @@ import { SelectWorkout } from "../../lesia/SelectWorkout";
 import { ChangeSucsess } from "../../lesia/ChangeSucsess";
 import { UpdateAuth } from "../../lesia/UpdateAuth";
 import { Modal } from "../../lesia/Modal";
-import { Popupmenu } from "../../../components/popup-menu/popup-menu";
+import { useGetAllCoursesQuery } from "../../../store/coursesApi";
+import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");
+  const id = localStorage.getItem("id");
 
-  const usersCourses = [
-    { name: "Йога" },
-    { name: "Стретчинг" },
-    { name: "Бодифлекс" },
-  ];
+  const { data } = useGetAllCoursesQuery();
+  const allCourses = [];
+  if (data) {
+    const keys = Object.keys(data);
+    keys.forEach((key) => allCourses.push(data[key]));
+  }
+
+  const dataUsers = useGetUserCoursesQuery().data;
+
+  const usersCourses = [];
+  if (allCourses && dataUsers && dataUsers[id]) {
+    const coursesId = dataUsers[id].courses;
+
+    for (let i = 0; i < allCourses.length; i++) {
+      for (let j = 0; j < coursesId.length; j++) {
+        if (allCourses[i]._id === coursesId[j]) {
+          usersCourses.push(allCourses[i]);
+        }
+      }
+    }
+  }
 
   const handleImg = (item) => {
     switch (item.name) {
@@ -90,7 +108,10 @@ export const ProfilePage = ({ login }) => {
           </div>
         </NavLink>
         <div>
-          <Popupmenu login={login} />
+          <NavLink className={styles.user} to="/profile">
+            <img src="img/Ellipse.svg" alt="" />
+            <p>{login}</p>
+          </NavLink>
         </div>
       </div>
       <div className={styles.content_profile}>
@@ -124,12 +145,7 @@ export const ProfilePage = ({ login }) => {
                 src={handleImg(item)}
                 alt="fitness_img"
               />
-              <div
-                // onClick={() => {
-                //   //navigate(`/course/${item._id}`);
-                // }}
-                className={styles.button}
-              >
+              <div className={styles.button}>
                 <div className={styles.box}>
                   <button
                     className={styles.button_courses}

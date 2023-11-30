@@ -24,12 +24,12 @@ export const AppRoutes = () => {
       <Route path="/changeLogin" element={<ChangeLogin />} />
       <Route path="/progress" element={<Progress />} />
       <Route path="/progresscheck" element={<ProgressCheck />} />
-      <Route path="/workout-description" element={<WorkoutDescriptionPage />} />
+      <Route path="/workout-description/:id" element={<WorkoutDescriptionPage />} />
       <Route path="/select-workout" element={<SelectWorkout />} />
       <Route
         path="/workout-video"
         element={
-          <ProtectedRoute redirectPath="/workout-description" isAllowed={isAuth} >
+          <ProtectedRoute redirectPath="/workout-description/:id" isAllowed={isAuth} >
             <WorkoutVideoPage login={email}/>
           </ProtectedRoute>
         }
