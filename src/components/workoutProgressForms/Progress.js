@@ -1,5 +1,7 @@
 import { Button } from "../button/Button";
 import styles from "../../styles/Form.module.css";
+import { useGetAllWorkoutsQuery } from "../../store/workoutsApi";
+import { useParams } from "react-router-dom";
 
 export const Progress = ({
   onFormClose,
@@ -17,6 +19,19 @@ export const Progress = ({
     setFormValues(values);
     // console.log(formValues);
   };
+
+  const params = useParams();
+  const pageId = params.id;
+
+  const workoutsAll = useGetAllWorkoutsQuery().data;
+  const allWorkouts = [];
+  if (workoutsAll) {
+    const keys = Object.keys(workoutsAll);
+    keys.forEach((key) => allWorkouts.push(workoutsAll[key]));
+  }
+
+  const workout = allWorkouts?.filter((el) => el._id === pageId)[0];
+
   return (
     <div className={styles.page}>
       <div className={styles.progressForm}>
@@ -66,7 +81,25 @@ export const Progress = ({
         </svg>
         <form onSubmit={handleSubmit}>
           <div className={styles.headerForm}>Мой прогресс</div>
-          <div className={styles.textForm}>
+          {workout?.exercises.map((item, index) => (
+            <div key={index}>
+              <div className={styles.textForm}>
+                Сколько раз вы сделали: {item.substring(0, item.indexOf("(")-1).toLowerCase()}?
+              </div>
+              <div className={styles.inputBox}>
+                <input
+                  key={index + 1}
+                  className={styles.inputForm}
+                  type="text"
+                  name="quantity"
+                  placeholder="Введите значение"
+                  onInput={(e) => handleChange(e, index)}
+                ></input>
+              </div>
+            </div>
+          ))}
+
+          {/* <div className={styles.textForm}>
             Сколько раз вы сделали наклоны вперед?
           </div>
           <div className={styles.inputBox}>
@@ -78,8 +111,9 @@ export const Progress = ({
               placeholder="Введите значение"
               onInput={(e) => handleChange(e, 0)}
             ></input>
-          </div>
-          <div className={styles.textForm}>
+          </div> */}
+
+          {/* <div className={styles.textForm}>
             Сколько раз вы сделали наклоны назад?
           </div>
           <div className={styles.inputBox}>
@@ -91,8 +125,9 @@ export const Progress = ({
               placeholder="Введите значение"
               onInput={(e) => handleChange(e, 1)}
             ></input>
-          </div>
-          <div className={styles.textForm}>
+          </div> */}
+
+          {/* <div className={styles.textForm}>
             Сколько раз вы сделали поднятие ног, согнутых в коленях?
           </div>
           <div className={styles.inputBox}>
@@ -104,7 +139,7 @@ export const Progress = ({
               placeholder="Введите значение"
               onInput={(e) => handleChange(e, 2)}
             ></input>
-          </div>
+          </div> */}
           <div className={styles.buttonForm}>
             <Button
               text="Отправить"

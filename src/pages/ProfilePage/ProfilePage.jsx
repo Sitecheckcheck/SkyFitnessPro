@@ -11,10 +11,13 @@ import { Modal } from "../../components/modal/Modal";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
 import { useGetUserCoursesQuery } from "../../store/userCoursApi";
 import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { useDispatch } from "react-redux";
+import { setCourse } from "../../store/slices/courseSlise";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");
   const id = localStorage.getItem("id");
+  const dispatch = useDispatch();
 
   const { data } = useGetAllCoursesQuery();
   const allCourses = [];
@@ -24,7 +27,6 @@ export const ProfilePage = ({ login }) => {
   }
 
   const dataUsers = useGetUserCoursesQuery().data;
-
   const usersCourses = [];
   if (allCourses && dataUsers && dataUsers[id]) {
     const coursesId = dataUsers[id].courses;
@@ -155,7 +157,16 @@ export const ProfilePage = ({ login }) => {
                 <div className={styles.box}>
                   <button
                     className={styles.button_courses}
-                    onClick={() => setChangeData("workouts")}
+                    onClick={
+                      () => {
+                        setChangeData("workouts");
+                        dispatch(
+                          setCourse({
+                            course: item.name,
+                          })
+                        );
+                      }
+                    }
                   >
                     Перейти →
                   </button>

@@ -7,7 +7,6 @@
 }
 
 .wrapper {
-  /* width: 1440px; */
   height: 1460px;
   padding-left: calc(50% - 580px);
   padding-right: calc(50% - 580px);
@@ -64,22 +63,10 @@
   width: 1160px;
   height: 639px;
   flex-shrink: 0;
-  background-image: url(../../../public/img/video.png);
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-}
-
-.play-video {
-  width: 156px;
-  height: 156px;
-  flex-shrink: 0;
-  fill: #fafafa;
-  opacity: 0.75;
-  position: relative;
-  align-self: center;
-  background-image: url(../../../public/img/play.png);
-  background-repeat: no-repeat;
+  margin-bottom: 40px;
 }
 
 .footer-wrapper {
@@ -100,6 +87,7 @@
   line-height: 40px;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 20px;
 }
 
 .exercises {
@@ -113,9 +101,8 @@
   font-weight: 400;
   line-height: 32px;
   letter-spacing: 0em;
-  /* text-align: left; */
   padding-right: 100px;
-  /* padding-left: 0pt; */
+  margin-bottom: 10px;
 }
 
 .button {
@@ -126,7 +113,6 @@
   background-color: rgba(88, 14, 162, 1);
   color: rgba(250, 250, 250, 1);
   margin-top: 30px;
-  /* font-family: StratosSkyeng; */
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
@@ -136,13 +122,13 @@
 
 .progress-wrapper {
   width: 938px;
-  height: 350px;
   border-radius: 30px;
   background-color: rgba(242, 242, 242, 1);
   display: grid;
-  grid-template-rows: 60px 60px 60px 60px;
+  /* grid-template-rows: 60px 60px 60px 60px; */
   justify-content: center;
-  margin-top: 30px;
+  padding-bottom: 30px;
+  gap: 20px;
 }
 
 .progress-header {
@@ -151,22 +137,25 @@
   font-weight: 400;
   line-height: 40px;
   letter-spacing: 0em;
-  padding-top: 30px;
+  padding-top: 25px;
   text-align: center;
 }
 
 .progress-line {
   display: grid;
   grid-template-columns: 300px 300px;
+  align-items: center;
+  gap: 10px
 }
 
 .progress-text {
   font-family: StratosSkyeng;
   font-size: 24px;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 25px;
   letter-spacing: 0em;
   padding-left: 20px;
+  /* padding-right: 3px; */
 }
 
 .progress-one {

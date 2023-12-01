@@ -2,7 +2,6 @@ import styles from "./mainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
-import { useGetUserCoursesQuery } from "../../store/userCoursApi";
 import { Popupmenu } from "../../components/popup-menu/popup-menu";
 
 export const MainPage = () => {
@@ -13,12 +12,7 @@ export const MainPage = () => {
     keys.forEach((key) => allCourses.push(data[key]));
   }
 
-  const { isAuth, email, id } = useAuth();
-  const dataUsers = useGetUserCoursesQuery().data;
-  let userCourses = [];
-  if (dataUsers && id) {
-    userCourses = dataUsers[id].courses;
-  }
+  const { isAuth, email } = useAuth();
 
   const handleTop = () => {
     window.scrollTo({
@@ -84,11 +78,7 @@ export const MainPage = () => {
             <div
               className={styles.img_box}
               onClick={() => {
-                if (userCourses.includes(item._id)) {
-                  navigate(`/workout-video`);
-                } else {
-                  navigate(`/workout-description/${item._id}`);
-                }
+                navigate(`/workout-description/${item._id}`);
               }}
               key={index}
             >

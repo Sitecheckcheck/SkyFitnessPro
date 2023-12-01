@@ -10,7 +10,7 @@ import { useAuth } from "./hooks/use-auth";
 
 export const AppRoutes = () => {
   const { isAuth, email } = useAuth();
-  console.log(isAuth, email);
+  
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
@@ -22,7 +22,7 @@ export const AppRoutes = () => {
       />
       <Route path="/select-workout" element={<SelectWorkout />} />
       <Route
-        path="/workout-video"
+        path="/workout-video/:id"
         element={
           <ProtectedRoute
             redirectPath="/workout-description/:id"

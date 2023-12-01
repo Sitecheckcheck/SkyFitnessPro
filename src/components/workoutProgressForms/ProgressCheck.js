@@ -50,7 +50,7 @@ export const ProgressCheck = ({ onFormClose }) => {
         </svg>
         <div className={styles.headerProgress}>Ваш прогресс засчитан!</div>
         <div className={styles.imgBox}>
-          <img src="img/hand.svg" alt="logo" />
+          <img src="/img/hand.svg" alt="logo" />
         </div>
       </div>
     </div>
