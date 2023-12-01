@@ -1,7 +1,6 @@
 import styles from "../../styles/Form.module.css";
 
 export const ChangeSucsess = ({ text, onFormClose }) => {
-  
   setTimeout(onFormClose, 3000);
 
   return (
@@ -17,8 +16,9 @@ export const ChangeSucsess = ({ text, onFormClose }) => {
         // xmlnsSketch="http://www.bohemiancoding.com/sketch/ns"
         fill="#000000"
       >
-        <g id="SVGRepo_bgCarrier" 
-        // stroke-width="0"
+        <g
+          id="SVGRepo_bgCarrier"
+          // stroke-width="0"
         ></g>
         <g
           id="SVGRepo_tracerCarrier"

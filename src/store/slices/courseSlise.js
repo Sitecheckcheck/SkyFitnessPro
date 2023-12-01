@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  course: null
+  course: null,
 };
 
 const courseSlice = createSlice({
-  name: 'course',
+  name: "course",
   initialState,
   reducers: {
     setCourse(state, action) {
@@ -14,7 +14,6 @@ const courseSlice = createSlice({
   },
 });
 
-export const {setCourse} = courseSlice.actions;
+export const { setCourse } = courseSlice.actions;
 
 export default courseSlice.reducer;
-

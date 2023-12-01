@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  email: localStorage.getItem('email'),
-  token: localStorage.getItem('token'),
-  id: localStorage.getItem('id'),
+  email: localStorage.getItem("email"),
+  token: localStorage.getItem("token"),
+  id: localStorage.getItem("id"),
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setUser(state, action) {
@@ -26,7 +26,6 @@ const userSlice = createSlice({
   },
 });
 
-export const {setUser, removeUser, updateUser} = userSlice.actions;
+export const { setUser, removeUser, updateUser } = userSlice.actions;
 
 export default userSlice.reducer;
-

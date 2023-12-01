@@ -17,7 +17,6 @@ export const Progress = ({
     const values = [...formValues];
     values[index] = e.target.value;
     setFormValues(values);
-    // console.log(formValues);
   };
 
   const params = useParams();
@@ -84,7 +83,8 @@ export const Progress = ({
           {workout?.exercises.map((item, index) => (
             <div key={index}>
               <div className={styles.textForm}>
-                Сколько раз вы сделали: {item.substring(0, item.indexOf("(")-1).toLowerCase()}?
+                Сколько раз вы сделали:{" "}
+                {item.substring(0, item.indexOf("(") - 1).toLowerCase()}?
               </div>
               <div className={styles.inputBox}>
                 <input
@@ -98,48 +98,6 @@ export const Progress = ({
               </div>
             </div>
           ))}
-
-          {/* <div className={styles.textForm}>
-            Сколько раз вы сделали наклоны вперед?
-          </div>
-          <div className={styles.inputBox}>
-            <input
-              key={1}
-              className={styles.inputForm}
-              type="text"
-              name="quantity"
-              placeholder="Введите значение"
-              onInput={(e) => handleChange(e, 0)}
-            ></input>
-          </div> */}
-
-          {/* <div className={styles.textForm}>
-            Сколько раз вы сделали наклоны назад?
-          </div>
-          <div className={styles.inputBox}>
-            <input
-              key={2}
-              className={styles.inputForm}
-              type="text"
-              name="quantity"
-              placeholder="Введите значение"
-              onInput={(e) => handleChange(e, 1)}
-            ></input>
-          </div> */}
-
-          {/* <div className={styles.textForm}>
-            Сколько раз вы сделали поднятие ног, согнутых в коленях?
-          </div>
-          <div className={styles.inputBox}>
-            <input
-              key={3}
-              className={styles.inputForm}
-              type="text"
-              name="quantity"
-              placeholder="Введите значение"
-              onInput={(e) => handleChange(e, 2)}
-            ></input>
-          </div> */}
           <div className={styles.buttonForm}>
             <Button
               text="Отправить"

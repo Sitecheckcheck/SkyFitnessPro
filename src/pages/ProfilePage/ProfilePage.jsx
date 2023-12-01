@@ -157,16 +157,14 @@ export const ProfilePage = ({ login }) => {
                 <div className={styles.box}>
                   <button
                     className={styles.button_courses}
-                    onClick={
-                      () => {
-                        setChangeData("workouts");
-                        dispatch(
-                          setCourse({
-                            course: item.name,
-                          })
-                        );
-                      }
-                    }
+                    onClick={() => {
+                      setChangeData("workouts");
+                      dispatch(
+                        setCourse({
+                          course: item.name,
+                        })
+                      );
+                    }}
                   >
                     Перейти →
                   </button>

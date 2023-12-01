@@ -10,7 +10,7 @@ import { useAuth } from "./hooks/use-auth";
 
 export const AppRoutes = () => {
   const { isAuth, email } = useAuth();
-  
+
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />

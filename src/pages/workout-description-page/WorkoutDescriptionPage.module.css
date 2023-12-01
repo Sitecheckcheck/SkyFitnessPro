@@ -112,8 +112,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 22px;
-  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-  /* grid-auto-flow: row dense; */
   column-gap: 80px;
   margin-top: 22px;
   box-sizing: border-box;
@@ -139,7 +137,6 @@
   width: 1160px;
   height: 300px;
   border-radius: 30px;
-  /* background-color: rgba(205, 205, 205, 0.1); */
   margin-top: 40px;
 
   background-color: #f9ebff;

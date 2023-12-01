@@ -145,7 +145,7 @@
   display: grid;
   grid-template-columns: 300px 300px;
   align-items: center;
-  gap: 10px
+  gap: 10px;
 }
 
 .progress-text {
@@ -155,7 +155,6 @@
   line-height: 25px;
   letter-spacing: 0em;
   padding-left: 20px;
-  /* padding-right: 3px; */
 }
 
 .progress-one {

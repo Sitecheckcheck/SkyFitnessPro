@@ -5,8 +5,8 @@ import styles from "./SelectWorkout.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const SelectWorkout = ({ onFormClose }) => {
-  const {course} = useSelector(state => state.course);
-  
+  const { course } = useSelector((state) => state.course);
+
   const { data } = useGetAllCoursesQuery();
   const allCourses = [];
   if (data) {

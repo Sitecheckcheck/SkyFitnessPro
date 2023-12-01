@@ -78,8 +78,9 @@ export const ChangeLogin = ({ onFormClose, onFormError, onFormSubmited }) => {
         // xmlnsSketch="http://www.bohemiancoding.com/sketch/ns"
         fill="#000000"
       >
-        <g id="SVGRepo_bgCarrier" 
-        // stroke-width="0"
+        <g
+          id="SVGRepo_bgCarrier"
+          // stroke-width="0"
         ></g>
         <g
           id="SVGRepo_tracerCarrier"
