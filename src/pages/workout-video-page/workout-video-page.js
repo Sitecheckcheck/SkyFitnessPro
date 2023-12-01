@@ -4,18 +4,27 @@ import { Progress } from "../../components/workoutProgressForms/Progress";
 import { ProgressCheck } from "../../components/workoutProgressForms/ProgressCheck";
 import { Modal } from "../../components/modal/Modal";
 import { Popupmenu } from "../../components/popup-menu/popup-menu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProgressBar } from "../../components/progressBar/progressbar";
 import "./workout-video-page.css";
+import { useGetAllWorkoutsQuery } from "../../store/workoutsApi";
+import { useSelector } from "react-redux";
 //
 export const WorkoutVideoPage = ({ login }) => {
+  const { course } = useSelector((state) => state.course);
+  const params = useParams();
+  const pageId = params.id;
   const [progress, setProgress] = useState("");
-  // const [formValues, setFormValues] = useState({
-  //   first: "0",
-  //   second: "0",
-  //   third: "0",
-  // });
-  const [formValues, setFormValues] = useState(["0", "0", "0"]);
+  const [formValues, setFormValues] = useState(Array(10).fill("0"));
+
+  const workoutsAll = useGetAllWorkoutsQuery().data;
+  const allWorkouts = [];
+  if (workoutsAll) {
+    const keys = Object.keys(workoutsAll);
+    keys.forEach((key) => allWorkouts.push(workoutsAll[key]));
+  }
+
+  const workout = allWorkouts?.filter((el) => el._id === pageId)[0];
 
   const getModalForm = () => {
     switch (progress) {
@@ -37,6 +46,15 @@ export const WorkoutVideoPage = ({ login }) => {
 
   const navigate = useNavigate();
 
+  function createValidVideoUrl(url) {
+    const lastPath = url?.slice(url.lastIndexOf("/"));
+    return `https://www.youtube.com/embed${lastPath}`;
+  }
+
+  const quantityExercises = (item) => {
+    return Number(item.substring(item.indexOf("(") + 1, item.indexOf("(") + 3));
+  };
+
   return (
     <div>
       <div className="wrapper">
@@ -45,70 +63,68 @@ export const WorkoutVideoPage = ({ login }) => {
           <Popupmenu login={login} />
         </div>
         <div className="content-wrapper">
-          <h1 className="header">Йога</h1>
+          <h1 className="header">{course}</h1>
           <div className="categories">
-            <span className="categorie">Красота и здоровье /</span>
-            <span className="categorie">Йога на каждый день /</span>
-            <span className="categorie">2 день</span>
+            <span className="categorie">{workout?.name}</span>
           </div>
-          <div className="video">
-            <div className="play-video"></div>
-          </div>
+          <iframe
+            className="video"
+            src={createValidVideoUrl(workout?.video)}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            frameBorder={0}
+          ></iframe>
           <div className="footer-wrapper">
             <div className="exercises-wrapper">
               <h1 className="exercises-header">Упражнения</h1>
               <ul className="exercises">
-                <li className="exercise">Наклон вперед (10 повторений)</li>
-                <li className="exercise">Наклон назад (10 повторений)</li>
-                <li className="exercise">
-                  Поднятие ног, согнутых в коленях (5 повторений)
-                </li>
+                {workout?.exercises ? (
+                  workout?.exercises.map((item, index) => (
+                    <li key={index} className="exercise">
+                      {item}
+                    </li>
+                  ))
+                ) : (
+                  <div className="exercise">Нет доступных упражнений</div>
+                )}
               </ul>
-              <button
-                className="button"
-                onClick={() => setProgress("progress")}
-              >
-                Заполнить свой прогресс
-              </button>
+              {workout?.exercises ? (
+                <button
+                  className="button"
+                  onClick={() => setProgress("progress")}
+                >
+                  Заполнить свой прогресс
+                </button>
+              ) : (
+                ""
+              )}
             </div>
             <div className="progress-wrapper">
               <div className="progress-header">
-                Мой прогресс по тренировке 2:
+                Мой прогресс по тренировке {workout?.name[0]}:
               </div>
-              <br />
-              <br />
-              <div className="progress-line">
-                <div className="progress-text">Наклоны вперед</div>
-                <ProgressBar
-                  color="#565EEF"
-                  bgcolor="#EDECFF"
-                  progress={
-                    formValues[0] < 10 ? (formValues[0] / 10) * 100 : 100
-                  }
-                />
-              </div>
-              <div className="progress-line">
-                <div className="progress-text">Наклоны назад</div>
-                <ProgressBar
-                  color="#FF6D00"
-                  bgcolor="#FFF2E0"
-                  progress={
-                    formValues[1] < 10 ? (formValues[1] / 10) * 100 : 100
-                  }
-                />
-              </div>
-              <div className="progress-line">
-                <div className="progress-text">
-                  Поднятие ног,
-                  <br />
-                  согнутых в коленях
-                </div>
-                <ProgressBar
-                  color="#9A48F1"
-                  bgcolor="#F9EBFF"
-                  progress={formValues[2] < 5 ? (formValues[2] / 5) * 100 : 100}
-                />
-              </div>
+
+              {workout?.exercises ? (
+                workout?.exercises?.map((item, index) => (
+                  <div key={index} className="progress-line">
+                    <div className="progress-text">
+                      {item.substring(0, item.indexOf("("))}
+                    </div>
+                    <ProgressBar
+                      color="#565EEF"
+                      bgcolor="#EDECFF"
+                      progress={
+                        formValues[index] < quantityExercises(item)
+                          ? (formValues[index] / quantityExercises(item)) * 100
+                          : 100
+                      }
+                    />
+                  </div>
+                ))
+              ) : (
+                <div className="exercise">Нет доступных упражнений</div>
+              )}
             </div>
           </div>
         </div>

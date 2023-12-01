@@ -47,13 +47,6 @@ export const WorkoutDescriptionPage = () => {
         <div className={styles.logoBox} onClick={() => navigate("/")}>
           <img src="/img/logoblack.svg" alt="logo" />
         </div>
-        {/* <button
-          className={styles.buttonLogin}
-          onClick={() => navigate("/login")}
-        >
-          Войти
-        </button> */}
-
         {isAuth ? (
           <Popupmenu login={email} />
         ) : (
