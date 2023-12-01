@@ -4,9 +4,11 @@ import { Modal } from "../../components/modal/Modal";
 import { Button } from "../../components/button/Button";
 import { Appointment } from "../../components/appointment/Appointment";
 import styles from "./WorkoutDescriptionPage.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
 import CourseBanner from "../../components/courseBanner/courseBanner";
+import { useAuth } from "../../hooks/use-auth";
+import { Popupmenu } from "../../components/popup-menu/popup-menu";
 
 export const WorkoutDescriptionPage = () => {
   const [isOpen, setIsOpen] = useState("");
@@ -35,11 +37,25 @@ export const WorkoutDescriptionPage = () => {
     <li key={index}>{element}</li>
   ));
 
+  const { isAuth, email } = useAuth();
+  console.log(email);
+
   return (
     <div className={`container`}>
-      <div onClick={() => navigate("/")}>
-        <img src="/img/logoblack.svg" alt="logo" />
+      <br />
+      <div className={styles.headerWrapper}>
+        <div className={styles.logoBox} onClick={() => navigate("/")}>
+          <img src="/img/logoblack.svg" alt="logo" />
+        </div>
+        {isAuth ? (
+          <Popupmenu login={email} />
+        ) : (
+          <NavLink className="link" to="/login">
+            <button className={styles.buttonLogin}>Войти</button>
+          </NavLink>
+        )}
       </div>
+
       <br />
       <br />
       <br />

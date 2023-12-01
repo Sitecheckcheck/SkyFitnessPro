@@ -42,6 +42,7 @@ export const ProgressBar = ({ color, bgcolor, progress }) => {
     fontWeight: 400,
     lineHeight: "32px",
     paddingRight: progressPaddingRight,
+    paddingLeft: progressPaddingRight,
   };
 
   return (

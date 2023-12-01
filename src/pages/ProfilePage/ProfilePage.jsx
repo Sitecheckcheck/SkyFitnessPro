@@ -2,18 +2,22 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ProfilePage.module.css";
 import { NavLink } from "react-router-dom";
-import { ChangeLogin } from "../../../components/profileChanges/ChangeLogin";
-import { ChangePassword } from "../../../components/profileChanges/ChangePassword";
-import { SelectWorkout } from "../../../components/selectWorkout/SelectWorkout";
-import { ChangeSucsess } from "../../../components/profileChanges/ChangeSucsess";
-import { UpdateAuth } from "../../../components/profileChanges/UpdateAuth";
-import { Modal } from "../../../components/modal/Modal";
-import { useGetAllCoursesQuery } from "../../../store/coursesApi";
-import { useGetUserCoursesQuery } from "../../../store/userCoursApi";
+import { ChangeLogin } from "../../components/profileChanges/ChangeLogin";
+import { ChangePassword } from "../../components/profileChanges/ChangePassword";
+import { SelectWorkout } from "../../components/selectWorkout/SelectWorkout";
+import { ChangeSucsess } from "../../components/profileChanges/ChangeSucsess";
+import { UpdateAuth } from "../../components/profileChanges/UpdateAuth";
+import { Modal } from "../../components/modal/Modal";
+import { useGetAllCoursesQuery } from "../../store/coursesApi";
+import { useGetUserCoursesQuery } from "../../store/userCoursApi";
+import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { useDispatch } from "react-redux";
+import { setCourse } from "../../store/slices/courseSlise";
 
 export const ProfilePage = ({ login }) => {
   const [changeData, setChangeData] = useState("");
   const id = localStorage.getItem("id");
+  const dispatch = useDispatch();
 
   const { data } = useGetAllCoursesQuery();
   const allCourses = [];
@@ -23,7 +27,6 @@ export const ProfilePage = ({ login }) => {
   }
 
   const dataUsers = useGetUserCoursesQuery().data;
-
   const usersCourses = [];
   if (allCourses && dataUsers && dataUsers[id]) {
     const coursesId = dataUsers[id].courses;
@@ -117,12 +120,7 @@ export const ProfilePage = ({ login }) => {
             <img src="img/logoblack.svg" alt="logo" />
           </div>
         </NavLink>
-        <div>
-          <NavLink className={styles.user} to="/profile">
-            <img src="img/Ellipse.svg" alt="" />
-            <p>{login}</p>
-          </NavLink>
-        </div>
+        <Popupmenu login={login} />
       </div>
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мой профиль</p>
@@ -159,7 +157,14 @@ export const ProfilePage = ({ login }) => {
                 <div className={styles.box}>
                   <button
                     className={styles.button_courses}
-                    onClick={() => setChangeData("workouts")}
+                    onClick={() => {
+                      setChangeData("workouts");
+                      dispatch(
+                        setCourse({
+                          course: item.name,
+                        })
+                      );
+                    }}
                   >
                     Перейти →
                   </button>

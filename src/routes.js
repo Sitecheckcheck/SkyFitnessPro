@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import { MainPage } from "./views/pasha/mainPage/mainPage";
+import { MainPage } from "../src/pages/mainPage/mainPage";
 import { AuthPage } from "./pages/AuthPage";
 import { ProtectedRoute } from "./components/protectedRout/ProtectedRoute";
-import { WorkoutVideoPage } from "./views/nikita/workout-video-page";
-import { ProfilePage } from "./views/pasha/ProfilePage/ProfilePage";
-import { WorkoutDescriptionPage } from "./views/tanya/WorkoutDescriptionPage";
+import { WorkoutVideoPage } from "../src/pages/workout-video-page/workout-video-page";
+import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
+import { WorkoutDescriptionPage } from "../src/pages/workout-description-page/WorkoutDescriptionPage";
 import { SelectWorkout } from "./components/selectWorkout/SelectWorkout";
 import { useAuth } from "./hooks/use-auth";
 
 export const AppRoutes = () => {
   const { isAuth, email } = useAuth();
-  console.log(isAuth, email);
+
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
@@ -22,7 +22,7 @@ export const AppRoutes = () => {
       />
       <Route path="/select-workout" element={<SelectWorkout />} />
       <Route
-        path="/workout-video"
+        path="/workout-video/:id"
         element={
           <ProtectedRoute
             redirectPath="/workout-description/:id"

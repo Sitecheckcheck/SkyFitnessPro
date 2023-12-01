@@ -72,17 +72,13 @@
 
 .img_box {
   position: relative;
-  cursor: pointer;
   width: 360px;
   height: 480px;
   box-shadow: -10px 10px 15.99882px 0px rgba(0, 0, 0, 0.1),
     10px -10px 16px 0px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 }
-.img_box:hover {
-  opacity: 0.8;
-  transition: 0.3s;
-}
+
 .img_title {
   position: absolute;
   top: 50px;
