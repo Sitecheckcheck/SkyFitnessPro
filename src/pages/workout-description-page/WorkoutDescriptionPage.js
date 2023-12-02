@@ -34,11 +34,14 @@ export const WorkoutDescriptionPage = () => {
   const directions = coursePage?.directions;
 
   const list = directions?.map((element, index) => (
-    <li key={index}>{element}</li>
+    <ul key={index}>
+      {element?.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
   ));
 
   const { isAuth, email } = useAuth();
-  console.log(email);
 
   return (
     <div className={`container`}>
@@ -64,35 +67,20 @@ export const WorkoutDescriptionPage = () => {
         <div className={styles.heading}>Подойдет для вас, если:</div>
         <div style={{ paddingTop: "40px" }}>
           <ol className={styles.reasons}>
-            <div className={styles.number}>1</div>
-            <li className={styles.reasons}>
-              Давно хотели
-              <br /> попробовать йогу, но
-              <br /> не решались начать.{" "}
-            </li>
-            <div className={styles.number}>2</div>
-            <li className={styles.reasons}>
-              Хотите укрепить
-              <br /> позвоночник,
-              <br /> избавиться от болей
-              <br /> в спине и суставах.
-            </li>
-            <div className={styles.number}>3</div>
-            <li className={styles.reasons}>
-              Ищете активность,
-              <br /> полезную для тела
-              <br /> и души.
-            </li>
+            {coursePage?.reasons.map((item, index) => (
+              <div key={index} className={styles.reasonsBlock}>
+                <div className={styles.number}>{index + 1}</div>
+                <li className={styles.reasons}>{item}</li>
+              </div>
+            ))}
           </ol>
         </div>
       </div>
       <div>
         <div className={styles.heading}>Направления:</div>
-        <div className={styles["content-container"]}>
-          <div className={`${styles.directions} small-text`}>
-            <ul>{list}</ul>
-          </div>
-        </div>
+        {/* <div className={styles["content-container"]}> */}
+        <div className={`${styles.directions} small-text`}>{list}</div>
+        {/* </div> */}
       </div>
       <p className={`${styles.text} small-text`}>
         {coursePage ? coursePage.description : ""}
