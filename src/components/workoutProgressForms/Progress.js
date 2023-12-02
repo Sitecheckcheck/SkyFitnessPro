@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button } from "../button/Button";
 import styles from "../../styles/Form.module.css";
 import { useGetAllWorkoutsQuery } from "../../store/workoutsApi";
@@ -8,6 +9,9 @@ export const Progress = ({
   onFormSubmited,
   formValues,
   setFormValues,
+  validateValues,
+  setError,
+  error,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +34,14 @@ export const Progress = ({
   }
 
   const workout = allWorkouts?.filter((el) => el._id === pageId)[0];
+
+  useEffect(() => {
+    console.log("errors", error);
+    validateValues(formValues);
+    // if (!error) {
+    //   setError("");
+    // }
+  }, [formValues, error, validateValues]);
 
   return (
     <div className={styles.page}>
@@ -93,19 +105,36 @@ export const Progress = ({
                   type="text"
                   name="quantity"
                   placeholder="Введите значение"
-                  onInput={(e) => handleChange(e, index)}
+                  onInput={(e) => {
+                    handleChange(e, index);
+                    validateValues(formValues);
+                  }}
                 ></input>
               </div>
             </div>
           ))}
           <div className={styles.buttonForm}>
-            <Button
-              text="Отправить"
-              onClick={() => {
-                console.log("send");
-                onFormSubmited();
-              }}
-            />
+            {error ? (
+              <>
+                <div style={{ color: "red" }}>{error}</div>
+                <Button
+                  text="Отправить"
+                  disabled={true}
+                  style={{ color: "grey" }}
+                  onClick={() => {
+                    console.log("error");
+                  }}
+                />
+              </>
+            ) : (
+              <Button
+                text="Отправить"
+                onClick={() => {
+                  console.log("send");
+                  onFormSubmited();
+                }}
+              />
+            )}
           </div>
         </form>
       </div>

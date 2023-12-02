@@ -26,6 +26,15 @@ export const WorkoutVideoPage = ({ login }) => {
 
   const workout = allWorkouts?.filter((el) => el._id === pageId)[0];
 
+  const [error, setError] = useState("");
+  const validateValues = (inputValues) => {
+    inputValues.forEach((el) =>
+      Number.isInteger(Number(el))
+        ? el
+        : setError("Количество выполненных упражнений должно быть целым числом")
+    );
+  };
+
   const getModalForm = () => {
     switch (progress) {
       case "progress":
@@ -35,6 +44,9 @@ export const WorkoutVideoPage = ({ login }) => {
             onFormSubmited={() => setProgress("progresscheck")}
             formValues={formValues}
             setFormValues={setFormValues}
+            validateValues={validateValues}
+            setError={setError}
+            error={error}
           />
         );
       case "progresscheck":
@@ -115,8 +127,13 @@ export const WorkoutVideoPage = ({ login }) => {
                       color="#565EEF"
                       bgcolor="#EDECFF"
                       progress={
-                        formValues[index] < quantityExercises(item)
-                          ? (formValues[index] / quantityExercises(item)) * 100
+                        error
+                          ? "0"
+                          : formValues[index] < quantityExercises(item)
+                          ? Math.round(
+                              (formValues[index] / quantityExercises(item)) *
+                                100
+                            )
                           : 100
                       }
                     />
