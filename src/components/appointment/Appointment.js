@@ -50,7 +50,7 @@ export const Appointment = ({ onFormClose }) => {
         </svg>
         <div className={styles.headerProgress}>Вы успешно записались!</div>
         <div className={styles.imgBox}>
-          <img src="img/hand.svg" alt="logo" />
+          <img src="/img/hand.svg" alt="logo" />
         </div>
       </div>
     </div>
