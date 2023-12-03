@@ -131,7 +131,7 @@ export const AuthPage = ({ isLoginMode }) => {
     <div className={styles.page}>
       <div className={styles.authForm}>
         <div className={styles.logoBox}>
-          <img src="img/logoblack.svg" alt="logo" />
+          <img src="/img/logoblack.svg" alt="logo" />
         </div>
         <div className={styles.inputBox}>
           <input

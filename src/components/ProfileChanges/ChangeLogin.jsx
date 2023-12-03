@@ -48,15 +48,6 @@ export const ChangeLogin = ({ onFormClose, onFormError, onFormSubmited }) => {
         } else {
           setError(error.message);
         }
-        // if (error.message.includes('auth/requires-recent-login')) {
-        //   const credential = promptForCredentials();
-        //   reauthenticateWithCredential(user, credential).then(() => {
-        //     // User re-authenticated.
-        //   }).catch((error) => {
-        //     // An error ocurred
-        //     // ...
-        //   });
-        // }
       });
   };
 
@@ -111,7 +102,7 @@ export const ChangeLogin = ({ onFormClose, onFormError, onFormSubmited }) => {
         </g>
       </svg>
       <div className={styles.logoBox}>
-        <img src="img/logoblack.svg" alt="logo" />
+        <img src="/img/logoblack.svg" alt="logo" />
       </div>
       <div className={styles.textForm}>Новый логин:</div>
       <div className={styles.inputBox}>

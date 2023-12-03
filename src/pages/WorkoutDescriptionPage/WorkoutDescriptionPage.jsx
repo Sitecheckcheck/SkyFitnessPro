@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Modal } from "../../components/Modal/Modal";
 import { Button } from "../../components/Button/Button";
 import { Appointment } from "../../components/Appointment/Appointment";
+import { UpdateAuth } from "../../components/ProfileChanges/UpdateAuth";
 import styles from "./WorkoutDescriptionPage.module.css";
 import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
@@ -15,6 +16,8 @@ export const WorkoutDescriptionPage = () => {
   const params = useParams();
   const pageId = params.id;
 
+  const { isAuth, email } = useAuth();
+
   const { data } = useGetAllCoursesQuery();
   const allCourses = [];
   if (data) {
@@ -25,9 +28,16 @@ export const WorkoutDescriptionPage = () => {
   const coursePage = allCourses.filter((el) => el._id === pageId)[0];
 
   const getModalForm = () => {
-    return (
-      isOpen === "open" && <Appointment onFormClose={() => setIsOpen("")} />
-    );
+    if (isOpen === "open" && isAuth) {
+      return <Appointment onFormClose={() => setIsOpen("")} />;
+    } else if (isOpen === "open" && !isAuth) {
+      return (
+        <UpdateAuth
+          onFormClose={() => setIsOpen("")}
+          text={"Для записи нужно залогиниться"}
+        />
+      );
+    }
   };
   const navigate = useNavigate();
 
@@ -40,8 +50,6 @@ export const WorkoutDescriptionPage = () => {
       ))}
     </ul>
   ));
-
-  const { isAuth, email } = useAuth();
 
   return (
     <div className={`container`}>

@@ -115,7 +115,7 @@ export const UpdateAuth = ({ text, onFormClose, onFormNewForm }) => {
           </g>
         </svg>
         <div className={styles.logoBox}>
-          <img src="img/logoblack.svg" alt="logo" />
+          <img src="/img/logoblack.svg" alt="logo" />
         </div>
         <div className={styles.inputBox}>
           <div className={styles.changeText}>{text}</div>

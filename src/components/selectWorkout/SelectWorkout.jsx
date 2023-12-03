@@ -115,7 +115,7 @@ export const SelectWorkout = ({ onFormClose }) => {
                   {workout.isDone && (
                     <img
                       className={styles.workoutSelected}
-                      src="img/check.svg"
+                      src="/img/check.svg"
                       alt="check"
                     />
                   )}
