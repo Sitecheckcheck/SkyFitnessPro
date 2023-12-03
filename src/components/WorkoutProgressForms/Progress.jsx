@@ -1,4 +1,4 @@
-import { Button } from "../Button/Button";
+import { Button } from "./../button/Button";
 import styles from "../../styles/Form.module.css";
 import { useGetAllWorkoutsQuery } from "../../store/workoutsApi";
 import { useParams } from "react-router-dom";

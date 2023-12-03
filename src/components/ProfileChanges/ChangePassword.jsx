@@ -1,6 +1,6 @@
 import { getAuth, updatePassword } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { Button } from "../Button/Button";
+import { Button } from "./../button/Button";
 import styles from "../../styles/Form.module.css";
 
 export const ChangePassword = ({
