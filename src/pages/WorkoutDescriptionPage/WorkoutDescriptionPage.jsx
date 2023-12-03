@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Modal } from "../../components/modal/Modal";
-import { Button } from "../../components/button/Button";
-import { Appointment } from "../../components/appointment/Appointment";
+import { Modal } from "../../components/Modal/Modal";
+import { Button } from "../../components/Button/Button";
+import { Appointment } from "../../components/Appointment/Appointment";
 import styles from "./WorkoutDescriptionPage.module.css";
 import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
-import CourseBanner from "../../components/courseBanner/courseBanner";
+import CourseBanner from "../../components/CourseBanner/CourseBanner";
 import { useAuth } from "../../hooks/use-auth";
-import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 
 export const WorkoutDescriptionPage = () => {
   const [isOpen, setIsOpen] = useState("");
@@ -51,7 +51,7 @@ export const WorkoutDescriptionPage = () => {
           <img src="/img/logoblack.svg" alt="logo" />
         </div>
         {isAuth ? (
-          <Popupmenu login={email} userNameColor={"black"} />
+          <PopupMenu login={email} userNameColor={"black"} />
         ) : (
           <NavLink className="link" to="/login">
             <button className={styles.buttonLogin}>Войти</button>

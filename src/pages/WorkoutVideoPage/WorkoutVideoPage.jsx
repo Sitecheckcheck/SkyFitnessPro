@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Progress } from "../../components/workoutProgressForms/Progress";
-import { ProgressCheck } from "../../components/workoutProgressForms/ProgressCheck";
-import { Modal } from "../../components/modal/Modal";
-import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { Progress } from "../../components/WorkoutProgressForms/Progress";
+import { ProgressCheck } from "../../components/WorkoutProgressForms/ProgressCheck";
+import { Modal } from "../../components/Modal/Modal";
+import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 import { useNavigate, useParams } from "react-router-dom";
-import { ProgressBar } from "../../components/progressBar/progressbar";
-import "./workout-video-page.css";
+import { ProgressBar } from "../../components/ProgressBar/PogressBar";
+import styles from "./WorkoutVideoPage.module.css";
 import { useGetAllWorkoutsQuery } from "../../store/workoutsApi";
 import { useSelector } from "react-redux";
 //
@@ -57,41 +57,41 @@ export const WorkoutVideoPage = ({ login }) => {
 
   return (
     <div>
-      <div className="wrapper">
-        <div className="logo-wrapper">
-          <div className="logo" onClick={() => navigate("/")} />
-          <Popupmenu login={login} userNameColor={"black"} />
+      <div className={styles.wrapper}>
+        <div className={styles.logoWrapper}>
+          <div className={styles.logo} onClick={() => navigate("/")} />
+          <PopupMenu login={login} userNameColor={"black"} />
         </div>
-        <div className="content-wrapper">
-          <h1 className="header">{course}</h1>
-          <div className="categories">
-            <span className="categorie">{workout?.name}</span>
+        <div className={styles.contentWrapper}>
+          <h1 className={styles.header}>{course}</h1>
+          <div className={styles.categories}>
+            <span className={styles.categorie}>{workout?.name}</span>
           </div>
           <iframe
-            className="video"
+            className={styles.video}
             src={createValidVideoUrl(workout?.video)}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             frameBorder={0}
           ></iframe>
-          <div className="footer-wrapper">
-            <div className="exercises-wrapper">
-              <h1 className="exercises-header">Упражнения</h1>
-              <ul className="exercises">
+          <div className={styles.footerWrapper}>
+            <div className={styles.exercisesWrapper}>
+              <h1 className={styles.exercisesHeader}>Упражнения</h1>
+              <ul className={styles.exercises}>
                 {workout?.exercises ? (
                   workout?.exercises.map((item, index) => (
-                    <li key={index} className="exercise">
+                    <li key={index} className={styles.exercise}>
                       {item}
                     </li>
                   ))
                 ) : (
-                  <div className="exercise">Нет доступных упражнений</div>
+                  <div className={styles.exercise}>Нет доступных упражнений</div>
                 )}
               </ul>
               {workout?.exercises ? (
                 <button
-                  className="button"
+                  className={styles.button}
                   onClick={() => setProgress("progress")}
                 >
                   Заполнить свой прогресс
@@ -100,15 +100,15 @@ export const WorkoutVideoPage = ({ login }) => {
                 ""
               )}
             </div>
-            <div className="progress-wrapper">
-              <div className="progress-header">
+            <div className={styles.progressWrapper}>
+              <div className={styles.progressHeader}>
                 Мой прогресс по тренировке {workout?.name[0]}:
               </div>
 
               {workout?.exercises ? (
                 workout?.exercises?.map((item, index) => (
-                  <div key={index} className="progress-line">
-                    <div className="progress-text">
+                  <div key={index} className={styles.progressLine}>
+                    <div className={styles.progressText}>
                       {item.substring(0, item.indexOf("("))}
                     </div>
                     <ProgressBar
@@ -126,7 +126,7 @@ export const WorkoutVideoPage = ({ login }) => {
                   </div>
                 ))
               ) : (
-                <div className="exercise">Нет доступных упражнений</div>
+                <div className={styles.exercise}>Нет доступных упражнений</div>
               )}
             </div>
           </div>

@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { MainPage } from "../src/pages/mainPage/mainPage";
+import { MainPage } from "./pages/MainPage/MainPage";
 import { AuthPage } from "./pages/AuthPage";
-import { ProtectedRoute } from "./components/protectedRout/ProtectedRoute";
-import { WorkoutVideoPage } from "../src/pages/workout-video-page/workout-video-page";
+import { ProtectedRoute } from "./components/ProtectedRout/ProtectedRoute";
+import { WorkoutVideoPage } from "./pages/WorkoutVideoPage/WorkoutVideoPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
-import { WorkoutDescriptionPage } from "../src/pages/workout-description-page/WorkoutDescriptionPage";
-import { SelectWorkout } from "./components/selectWorkout/SelectWorkout";
+import { WorkoutDescriptionPage } from "./pages/WorkoutDescriptionPage/WorkoutDescriptionPage";
+import { SelectWorkout } from "./components/SelectWorkout/SelectWorkout";
 import { useAuth } from "./hooks/use-auth";
 
 export const AppRoutes = () => {

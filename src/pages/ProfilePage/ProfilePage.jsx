@@ -2,15 +2,15 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ProfilePage.module.css";
 import { NavLink } from "react-router-dom";
-import { ChangeLogin } from "../../components/profileChanges/ChangeLogin";
-import { ChangePassword } from "../../components/profileChanges/ChangePassword";
-import { SelectWorkout } from "../../components/selectWorkout/SelectWorkout";
-import { ChangeSucsess } from "../../components/profileChanges/ChangeSucsess";
-import { UpdateAuth } from "../../components/profileChanges/UpdateAuth";
-import { Modal } from "../../components/modal/Modal";
+import { ChangeLogin } from "../../components/ProfileChanges/ChangeLogin";
+import { ChangePassword } from "../../components/ProfileChanges/ChangePassword";
+import { SelectWorkout } from "../../components/SelectWorkout/SelectWorkout";
+import { ChangeSucsess } from "../../components/ProfileChanges/ChangeSucsess";
+import { UpdateAuth } from "../../components/ProfileChanges/UpdateAuth";
+import { Modal } from "../../components/Modal/Modal";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
 import { useGetUserCoursesQuery } from "../../store/userCoursApi";
-import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 import { useDispatch } from "react-redux";
 import { setCourse } from "../../store/slices/courseSlise";
 
@@ -120,7 +120,7 @@ export const ProfilePage = ({ login }) => {
             <img src="img/logoblack.svg" alt="logo" />
           </div>
         </NavLink>
-        <Popupmenu login={login} userNameColor={"black"} />
+        <PopupMenu login={login} userNameColor={"black"} />
       </div>
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мой профиль</p>
@@ -145,33 +145,39 @@ export const ProfilePage = ({ login }) => {
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мои курсы</p>
         <div className={styles.content_main}>
-          {usersCourses.length !== 0  ? usersCourses.map((item, i) => (
-            <div className={styles.img_box} key={i}>
-              <p className={styles.img_title}>{item.name}</p>
-              <img
-                className={styles.img}
-                src={handleImg(item)}
-                alt="fitness_img"
-              />
-              <div className={styles.button}>
-                <div className={styles.box}>
-                  <button
-                    className={styles.button_courses}
-                    onClick={() => {
-                      setChangeData("workouts");
-                      dispatch(
-                        setCourse({
-                          course: item.name,
-                        })
-                      );
-                    }}
-                  >
-                    Перейти →
-                  </button>
+          {usersCourses.length !== 0 ? (
+            usersCourses.map((item, i) => (
+              <div className={styles.img_box} key={i}>
+                <p className={styles.img_title}>{item.name}</p>
+                <img
+                  className={styles.img}
+                  src={handleImg(item)}
+                  alt="fitness_img"
+                />
+                <div className={styles.button}>
+                  <div className={styles.box}>
+                    <button
+                      className={styles.button_courses}
+                      onClick={() => {
+                        setChangeData("workouts");
+                        dispatch(
+                          setCourse({
+                            course: item.name,
+                          })
+                        );
+                      }}
+                    >
+                      Перейти →
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )) : (<h2 style={{fontWeight: "400", color: 'coral'}}>Вы еще не купили ни одного курса</h2>)}
+            ))
+          ) : (
+            <h2 style={{ fontWeight: "400", color: "coral" }}>
+              Вы еще не купили ни одного курса
+            </h2>
+          )}
         </div>
       </div>
       {createPortal(

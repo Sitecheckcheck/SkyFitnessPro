@@ -1,8 +1,8 @@
-import styles from "./mainPage.module.css";
+import styles from "./MainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
-import { Popupmenu } from "../../components/popup-menu/popup-menu";
+import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 
 export const MainPage = () => {
   const { data } = useGetAllCoursesQuery();
@@ -49,7 +49,7 @@ export const MainPage = () => {
           </div>
         </NavLink>
         {isAuth ? (
-          <Popupmenu
+          <PopupMenu
             login={email}
             userNameColor={"white"}
             menuColor={"#271a58"}
