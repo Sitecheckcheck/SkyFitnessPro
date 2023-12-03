@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Progress } from "../../components/WorkoutProgressForms/Progress";
 import { ProgressCheck } from "../../components/WorkoutProgressForms/ProgressCheck";
-import { Modal } from "../../components/Modal/Modal";
+import { Modal } from "./../../components/modal/Modal";
 import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProgressBar } from "../../components/ProgressBar/PogressBar";
@@ -86,7 +86,9 @@ export const WorkoutVideoPage = ({ login }) => {
                     </li>
                   ))
                 ) : (
-                  <div className={styles.exercise}>Нет доступных упражнений</div>
+                  <div className={styles.exercise}>
+                    Нет доступных упражнений
+                  </div>
                 )}
               </ul>
               {workout?.exercises ? (

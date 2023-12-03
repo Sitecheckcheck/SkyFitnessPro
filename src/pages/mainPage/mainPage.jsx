@@ -1,4 +1,4 @@
-import styles from "./MainPage.module.css";
+import styles from "./mainPage.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";

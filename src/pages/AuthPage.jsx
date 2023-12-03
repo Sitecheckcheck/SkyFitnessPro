@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { Button } from "../components/Button/Button";
+import { Button } from "./../components/button/Button";
 import { useDispatch } from "react-redux";
 import {
   getAuth,
