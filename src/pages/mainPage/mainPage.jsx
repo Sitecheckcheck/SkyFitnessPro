@@ -69,7 +69,7 @@ export const MainPage = () => {
               Начните заниматься спортом и улучшите качество жизни
             </p>
           </div>
-          <div>
+          <div className={styles.saleImg}>
             <img src="/img/Sale1.svg" alt="sale" />
           </div>
         </div>

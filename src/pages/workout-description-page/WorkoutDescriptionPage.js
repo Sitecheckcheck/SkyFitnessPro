@@ -51,7 +51,7 @@ export const WorkoutDescriptionPage = () => {
           <img src="/img/logoblack.svg" alt="logo" />
         </div>
         {isAuth ? (
-          <Popupmenu login={email} />
+          <Popupmenu login={email} userNameColor={"black"} />
         ) : (
           <NavLink className="link" to="/login">
             <button className={styles.buttonLogin}>Войти</button>

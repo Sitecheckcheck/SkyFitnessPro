@@ -28,13 +28,15 @@
   display: flex;
   flex-direction: column;
   /* background: #fafafa; */
-  z-index: 1;
+  /* z-index: 1; */
   overflow: scroll;
   grid-row: 3 / 4;
   grid-column: 1 / 4;
   padding-right: 35px;
-  opacity: 50%;
+  /* opacity: 50%; */
   list-style: none;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 /* div */
@@ -50,6 +52,7 @@
   overflow-y: hidden;
   animation-duration: 0.3s;
   animation-name: slidein;
+  z-index: 1;
 }
 
 @keyframes slidein {
