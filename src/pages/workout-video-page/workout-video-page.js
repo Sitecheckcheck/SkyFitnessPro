@@ -60,7 +60,7 @@ export const WorkoutVideoPage = ({ login }) => {
       <div className="wrapper">
         <div className="logo-wrapper">
           <div className="logo" onClick={() => navigate("/")} />
-          <Popupmenu login={login} />
+          <Popupmenu login={login} userNameColor={"black"} />
         </div>
         <div className="content-wrapper">
           <h1 className="header">{course}</h1>
