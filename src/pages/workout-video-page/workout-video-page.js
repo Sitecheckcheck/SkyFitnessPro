@@ -116,7 +116,10 @@ export const WorkoutVideoPage = ({ login }) => {
                       bgcolor="#EDECFF"
                       progress={
                         formValues[index] < quantityExercises(item)
-                          ? (formValues[index] / quantityExercises(item)) * 100
+                          ? Math.round(
+                              (formValues[index] / quantityExercises(item)) *
+                                100
+                            )
                           : 100
                       }
                     />

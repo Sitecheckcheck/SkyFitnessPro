@@ -16,7 +16,10 @@ export const Progress = ({
   const handleChange = (e, index) => {
     const values = [...formValues];
     values[index] = e.target.value;
-    setFormValues(values);
+
+    if (/^[0-9]*$/.test(values[index])) {
+      setFormValues(values);
+    }
   };
 
   const params = useParams();
