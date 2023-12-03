@@ -53,7 +53,7 @@ export const ChangeSucsess = ({ text, onFormClose }) => {
         </g>
       </svg>
       <div className={styles.logoBox}>
-        <img src="img/logoblack.svg" alt="logo" />
+        <img src="/img/logoblack.svg" alt="logo" />
       </div>
       <div className={styles.changeText}>{text}</div>
     </div>
