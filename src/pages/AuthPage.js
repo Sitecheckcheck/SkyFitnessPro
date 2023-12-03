@@ -44,7 +44,6 @@ export const AuthPage = ({ isLoginMode }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         setIsSubmiting(false);
-        console.log(user);
         dispatch(
           setUser({
             email: user.email,
@@ -59,7 +58,6 @@ export const AuthPage = ({ isLoginMode }) => {
         navigate("/profile");
       })
       .catch((error) => {
-        console.log(error);
         setIsSubmiting(false);
         if (
           error.message.includes("user-not-found") ||
@@ -114,8 +112,6 @@ export const AuthPage = ({ isLoginMode }) => {
         navigate("/profile");
       })
       .catch((error) => {
-        console.log(error);
-
         if (error.message.includes("email-already-in-use")) {
           setError("Такой пользователь уже существует");
         } else if (error.message.includes("auth/invalid-email")) {

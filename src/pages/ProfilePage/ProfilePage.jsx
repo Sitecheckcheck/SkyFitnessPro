@@ -38,7 +38,6 @@ export const ProfilePage = ({ login }) => {
         }
       }
     }
-    console.log(usersCourses);
   }
 
   const handleImg = (item) => {

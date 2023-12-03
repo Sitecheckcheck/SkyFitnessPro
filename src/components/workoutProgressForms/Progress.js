@@ -11,7 +11,6 @@ export const Progress = ({
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
   };
   const handleChange = (e, index) => {
     const values = [...formValues];
@@ -105,7 +104,6 @@ export const Progress = ({
             <Button
               text="Отправить"
               onClick={() => {
-                console.log("send");
                 onFormSubmited();
               }}
             />
