@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../../store/slices/userSlice";
-import "./popup-menu.css";
+import styles from "./PopupMenu.module.css";
 
-export const Popupmenu = ({
+export const PopupMenu = ({
   login,
   userNameColor,
   menuColor,
@@ -22,14 +22,14 @@ export const Popupmenu = ({
   let loginShortened = login.slice(0, 5) + "...";
 
   return (
-    <div className="user-wrapper" onClick={() => toggleVisibleFilter("popup")}>
-      <div className="user-avatar" />
+    <div className={styles.userWrapper} onClick={() => toggleVisibleFilter("popup")}>
+      <div className={styles.userAvatar} />
       {login.length >= 5 ? (
-        <div className="user-name" style={{ color: userNameColor }}>
+        <div className={styles.userName} style={{ color: userNameColor }}>
           {loginShortened}
         </div>
       ) : (
-        <div className="user-name" style={{ color: userNameColor }}>
+        <div className={styles.userName} style={{ color: userNameColor }}>
           {login}
         </div>
       )}
@@ -48,24 +48,24 @@ export const Popupmenu = ({
         />
       </svg>
       {visibleFilter && (
-        <ul className="popup" style={{ background: menuColor }}>
-          <div className="popup-box">
+        <ul className={styles.popup} style={{ background: menuColor }}>
+          <div className={styles.popupBox}>
             <li
-              className="popup-line"
+              className={styles.popupLine}
               style={{ color: popupLineTextColor }}
               onClick={() => navigate("/")}
             >
               На главную
             </li>
             <li
-              className="popup-line"
+              className={styles.popupLine}
               style={{ color: popupLineTextColor }}
               onClick={() => navigate("/profile")}
             >
               Профиль
             </li>
             <li
-              className="popup-line"
+              className={styles.popupLine}
               style={{ color: popupLineTextColor }}
               onClick={() => {
                 dispatch(removeUser());

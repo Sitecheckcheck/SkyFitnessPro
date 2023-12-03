@@ -1,4 +1,4 @@
-import styles from "./courseBanner.module.css";
+import styles from "./CourseBanner.module.css";
 
 function CourseBanner({ name }) {
   const handleImg = (name) => {
