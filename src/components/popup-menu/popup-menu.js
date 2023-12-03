@@ -19,12 +19,12 @@ export const Popupmenu = ({
     setVisibleFilter(visibleFilter === filter ? null : filter);
   };
 
-  let loginShortened = login.slice(0, 7) + "...";
+  let loginShortened = login.slice(0, 5) + "...";
 
   return (
     <div className="user-wrapper" onClick={() => toggleVisibleFilter("popup")}>
       <div className="user-avatar" />
-      {login.length >= 7 ? (
+      {login.length >= 5 ? (
         <div className="user-name" style={{ color: userNameColor }}>
           {loginShortened}
         </div>
@@ -42,7 +42,8 @@ export const Popupmenu = ({
       >
         <path
           d="M12.3553 1.03308L6.67773 6.7107L1.00012 1.03308"
-          stroke="black"
+          // stroke="black"
+          stroke={userNameColor}
           strokeWidth="2"
         />
       </svg>

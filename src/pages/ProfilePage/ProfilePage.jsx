@@ -120,7 +120,7 @@ export const ProfilePage = ({ login }) => {
             <img src="img/logoblack.svg" alt="logo" />
           </div>
         </NavLink>
-        <Popupmenu login={login} />
+        <Popupmenu login={login} userNameColor={"black"} />
       </div>
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мой профиль</p>
@@ -145,7 +145,7 @@ export const ProfilePage = ({ login }) => {
       <div className={styles.content_profile}>
         <p className={styles.content_title}>Мои курсы</p>
         <div className={styles.content_main}>
-          {usersCourses.map((item, i) => (
+          {usersCourses.length !== 0  ? usersCourses.map((item, i) => (
             <div className={styles.img_box} key={i}>
               <p className={styles.img_title}>{item.name}</p>
               <img
@@ -171,7 +171,7 @@ export const ProfilePage = ({ login }) => {
                 </div>
               </div>
             </div>
-          ))}
+          )) : (<h2 style={{fontWeight: "400", color: 'coral'}}>Вы еще не купили ни одного курса</h2>)}
         </div>
       </div>
       {createPortal(
