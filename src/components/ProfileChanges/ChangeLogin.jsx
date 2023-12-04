@@ -1,7 +1,7 @@
 import { getAuth, updateEmail } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Button } from "./../button/Button";
+import { Button } from "./../Button/Button";
 import { updateUser } from "../../store/slices/userSlice";
 import styles from "../../styles/Form.module.css";
 

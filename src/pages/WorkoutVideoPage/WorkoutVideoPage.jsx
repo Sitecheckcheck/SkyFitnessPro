@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Progress } from "../../components/WorkoutProgressForms/Progress";
 import { ProgressCheck } from "../../components/WorkoutProgressForms/ProgressCheck";
-import { Modal } from "./../../components/modal/Modal";
+import { Modal } from "../../components/Modal/Modal";
 import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProgressBar } from "../../components/ProgressBar/PogressBar";
