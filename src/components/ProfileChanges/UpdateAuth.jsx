@@ -1,4 +1,4 @@
-import { Button } from "./../button/Button";
+import { Button } from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../../store/slices/userSlice";

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Modal } from "./../../components/modal/Modal";
-import { Button } from "./../../components/button/Button";
+import { Modal } from "./../../components/Modal/Modal";
+import { Button } from "./../../components/Button/Button";
 import { Appointment } from "../../components/Appointment/Appointment";
 import { UpdateAuth } from "../../components/ProfileChanges/UpdateAuth";
 import styles from "./WorkoutDescriptionPage.module.css";
 import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { useGetAllCoursesQuery } from "../../store/coursesApi";
-import CourseBanner from "./../../components/courseBanner/courseBanner";
+import CourseBanner from "../../components/CourseBanner/CourseBanner";
 import { useAuth } from "../../hooks/use-auth";
 import { PopupMenu } from "../../components/PopupMenu/PopupMenu";
 
